@@ -126,7 +126,7 @@ Copy-Item .env.example .env
 
 ```bash
 # Install globally from npm
-npm install -g @rios-guerrero-juan-manuel/copilot-telegram-bot
+npm install -g @juan-manuel-rios-guerrero/copilot-telegram-bot
 
 # Run the bot CLI
 copilot-telegram-bot

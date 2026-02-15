@@ -101,7 +101,7 @@ jobs:
           ## Installation
           
           ```bash
-          npm install @rios-guerrero-juan-manuel/copilot-telegram-bot@${{ steps.get_version.outputs.VERSION }}
+          npm install @juan-manuel-rios-guerrero/copilot-telegram-bot@${{ steps.get_version.outputs.VERSION }}
           ```
           
           ## Documentation
