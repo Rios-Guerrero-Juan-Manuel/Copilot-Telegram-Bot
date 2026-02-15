@@ -1,0 +1,507 @@
+{
+  "common": {
+    "yes": "Yes",
+    "no": "No",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "loading": "Loading...",
+    "none": "none"
+  },
+  "commands": {
+    "start": {
+      "welcome": "✅ Copilot Telegram Bot started\n\n📂 Project: <code>{cwd}</code>\n🤖 Model: <code>{model}</code>\n\nUse /help to see available commands.",
+      "status": "Current status:",
+      "help": "Use /help to see available commands."
+    },
+    "help": {
+      "title": "🧭 <b>Available Commands</b>",
+      "commands": {
+        "start": "/start - Initial status",
+        "help": "/help - Help",
+        "status": "/status - Current status",
+        "pwd": "/pwd - Current directory",
+        "ls": "/ls - List files",
+        "cd": "/cd [path] - Change directory",
+        "projects": "/projects - List projects",
+        "addproject": "/addproject [alias] [path] - Save project",
+        "rmproject": "/rmproject [alias] - Remove project",
+        "switch": "/switch [alias] - Switch to saved project",
+        "allowpath": "/allowpath [path] - Add allowed path (admin only)",
+        "plan": "/plan [task] - Plan mode",
+        "showplan": "/showplan - View active plan",
+        "editplan": "/editplan [id] - Edit plan",
+        "exportplan": "/exportplan [id] - Export plan as file",
+        "plans": "/plans - List all your plans",
+        "exitplan": "/exitplan - Exit plan mode",
+        "model": "/model - Change model",
+        "mcp": "/mcp - Manage MCP servers",
+        "mcp_add_sub": "/mcp add [name] [http|stdio] [...] - Add MCP server (direct)",
+        "mcp_remove": "/mcp remove [name] - Remove MCP server",
+        "mcp_enable": "/mcp enable [name] - Enable MCP server",
+        "mcp_disable": "/mcp disable [name] - Disable MCP server",
+        "mcp_refresh": "/mcp refresh - Reload MCP configuration",
+        "mcp_add": "/mcp_add - Add MCP server (wizard)",
+        "mcp_list": "/mcp_list [page] - List MCP servers",
+        "mcp_delete": "/mcp_delete [name] - Delete MCP server",
+        "logs": "/logs [lines] - View last log lines (owner only)",
+        "stop": "/stop - Stop current operation",
+        "extend": "/extend - Extend operation timeout",
+        "new_chat": "/new_chat - Start a clean chat session",
+        "reset": "/reset - Alias for /new_chat",
+        "language": "/language - Change bot language"
+      }
+    },
+    "status": {
+      "title": "🔄 <b>Bot Status</b>",
+      "operationInProgress": "⏳ Operation in progress: <b>Yes</b>",
+      "noOperation": "✅ Operation in progress: <b>No</b>",
+      "elapsedTime": "⏱️ Elapsed time: <b>{time}</b>",
+      "currentProject": "📂 Current project: <code>{cwd}</code>",
+      "model": "🤖 Model: <code>{model}</code>",
+      "mcpServers": "🧩 MCP: {servers}",
+      "mcpNone": "none",
+      "activeSessions": "📊 Active sessions: <b>{count}</b>",
+      "sessionInfo": "  • <code>{path}</code> ({status}, created {time} ago)",
+      "sessionActive": "🟢 active",
+      "sessionInactive": "⚪ inactive"
+    },
+    "logs": {
+      "noPermission": "⛔ You don't have permission to view logs.",
+      "error": "❌ Error reading logs",
+      "title": "📋 Last {lines} lines:\n\n<code>{content}</code>"
+    },
+    "language": {
+      "current": "Current language: {lang}",
+      "select": "🌐 Select your language:",
+      "changed": "✅ Language changed to {lang}"
+    },
+    "plans": {
+      "showplan": {
+        "noPlanActive": "❌ <b>No active plan</b>\n\nUse /plan to create a plan first.",
+        "notFound": "❌ <b>Plan not found</b>\n\nThe plan may have been deleted.",
+        "created": "📅 Created:",
+        "status": "📊 Status:",
+        "project": "📁 Project:",
+        "errorDisplaying": "❌ <b>Error displaying plan</b>\n\nDetails: {error}"
+      },
+      "editplan": {
+        "noPlan": "❌ <b>No plan to edit</b>\n\nUsage: /editplan [planId]\nWithout argument, edits the current active plan.\nWith argument, edits the plan with that ID.",
+        "notFound": "❌ <b>Plan not found</b>\n\nNo plan exists with ID {planId}.",
+        "accessDenied": "❌ <b>Access denied</b>\n\nYou don't have permission to edit this plan.",
+        "instructions": "📝 <b>Edit Plan: {title}</b>\n\n1️⃣ Download this file\n2️⃣ Edit it in your favorite editor\n3️⃣ Send the modified file back to this chat\n\n<i>The plan will be updated when you send the file.</i>",
+        "invalidFormat": "⚠️ <b>Invalid format</b>\n\nPlease send a .md (Markdown) file.",
+        "fileTooLarge": "⚠️ <b>File too large</b>\n\nThe file must be smaller than 10MB.",
+        "emptyFile": "⚠️ <b>Empty file</b>\n\nThe file cannot be empty.",
+        "updateError": "❌ <b>Error updating plan</b>\n\nCouldn't save the plan. It may have been deleted.",
+        "updated": "✅ <b>Plan updated successfully</b>\n\nChanges have been saved.",
+        "errorProcessing": "❌ <b>Error processing file</b>\n\nDetails: {error}",
+        "errorPreparing": "❌ <b>Error preparing plan for editing</b>\n\nDetails: {error}"
+      },
+      "exportplan": {
+        "noPlan": "❌ <b>No plan to export</b>\n\nUsage: /exportplan [planId]\nWithout argument, exports the current active plan.\nWith argument, exports the plan with that ID.",
+        "notFound": "❌ <b>Plan not found</b>\n\nNo plan exists with ID {planId}.",
+        "accessDenied": "❌ <b>Access denied</b>\n\nYou don't have permission to export this plan.",
+        "caption": "📄 Plan exported: {title}",
+        "error": "❌ <b>Error exporting plan</b>\n\nDetails: {error}"
+      },
+      "plans": {
+        "noPlans": "📋 <b>You have no saved plans</b>\n\nUse /plan to create your first plan.",
+        "title": "📋 <b>Your Plans</b> ({count})",
+        "hint": "\n💡 <i>Use /showplan to view the active plan</i>\n<i>Use /exportplan [id] to export a plan</i>",
+        "error": "❌ <b>Error listing plans</b>\n\nDetails: {error}"
+      },
+      "exitplan": {
+        "exited": "✅ <b>Plan Mode Deactivated</b>\n\nYou returned to normal mode and your conversation context was preserved.",
+        "exitedWithSaved": "\n\n💾 The plan has been saved in the database.\nUse /showplan to view it again."
+      },
+      "statusLabels": {
+        "draft": "draft",
+        "approved": "approved",
+        "in_progress": "in progress",
+        "completed": "completed",
+        "cancelled": "cancelled",
+        "interrupted": "interrupted"
+      }
+    }
+  },
+  "errors": {
+    "generic": "❌ An error occurred. Please try again.",
+    "notAuthorized": "❌ You are not authorized to use this bot.",
+    "operationInProgress": "⚠️ There is already an operation in progress. Please wait for it to complete.",
+    "invalidInput": "❌ Invalid input. Please try again.",
+    "pathNotAllowed": "❌ Path is not in the allowed list.",
+    "sessionNotFound": "❌ Session not found.",
+    "timeout": "⏱️ Operation timed out.",
+    "networkError": "❌ Network error. Retrying...",
+    "directoryNotExist": "❌ The current directory does not exist.",
+    "pathNotAllowedByConfig": "❌ Path not allowed by ALLOWED_PATHS.",
+    "invalidPathOrNotDirectory": "❌ Invalid path or not a directory.",
+    "setupRequired": "⚠️ You must configure allowed directories first. Use /start",
+    "mcpServerNotFound": "❌ MCP server not found.",
+    "specifyServerName": "❌ You must specify the server name.\n\nUsage: /mcp_delete [name]",
+    "configUpdated": "✅ Configuration updated. The new server is available.",
+    "notInPlanMode": "ℹ️ You are not in plan mode.",
+    "noActiveSession": "ℹ️ No active session to start a new chat",
+    "sessionReset": "✅ New chat created. Clean state.",
+    "pathNotAllowedShort": "The current directory is not in the allowed paths list.\n",
+    "pathNotAllowedDetailed": "The current directory is not in the allowed paths list.\n\nPossible causes:\n• The administrator has modified the security configuration\n• The directory was removed from the allowed list\n\nPlease contact the bot administrator or use /cd to change to an allowed directory."
+  },
+  "wizards": {
+    "cd": {
+      "title": "📁 Navigate Directories",
+      "selectDirectory": "Select a directory to navigate:",
+      "currentPath": "Current path:",
+      "confirm": "✅ Confirm this directory",
+      "cancelled": "❌ Navigation cancelled.",
+      "success": "✅ Directory changed to: {path}",
+      "timeout": "❌ Session expired due to inactivity. Please start again with /cd.",
+      "alreadyActive": "You already have a wizard in progress. Use \"Cancel\" to cancel it first.",
+      "errorReading": "❌ Error reading directory: {error}",
+      "noActiveWizard": "No active wizard. Use /cd to start one.",
+      "errorValidating": "❌ Error validating path.",
+      "invalidPage": "Invalid page.",
+      "directorySelected": "✅ Directory selected: <code>{path}</code>",
+      "navigationTitle": "📂 <b>Directory Navigation</b>",
+      "noSubdirectories": "📭 <i>No subdirectories in this location</i>"
+    },
+    "addProject": {
+      "title": "💾 Add Project",
+      "enterName": "📝 Enter the project name (letters, numbers, hyphens, and underscores only):",
+      "selectPath": "📂 Select the project directory:",
+      "summary": "📋 Project Summary:\n\n<b>Name:</b> {name}\n<b>Path:</b> {path}\n\nDo you want to save this project?",
+      "saved": "✅ Project '{name}' saved successfully!",
+      "cancelled": "❌ Project creation cancelled.",
+      "alreadyExists": "❌ A project with name '{name}' already exists.",
+      "alreadyActive": "You already have a wizard in progress. Use \"Cancel\" to cancel it first.",
+      "nameEmpty": "❌ Project name cannot be empty.",
+      "invalidCharacters": "❌ Project name contains special characters not allowed. Use only letters, numbers, spaces, hyphens, and underscores.",
+      "nameAlreadyExists": "❌ A project with the name \"<b>{name}</b>\" already exists.",
+      "errorReading": "❌ Error reading directory: {error}",
+      "errorValidating": "❌ Error validating path.",
+      "noActiveWizard": "No active wizard. Use /addproject to start one.",
+      "invalidPage": "Invalid page.",
+      "errorMissingName": "❌ Error: project name not defined.",
+      "pathNotAllowedConfirm": "❌ Path not allowed. Cannot save project in this location.",
+      "projectSaved": "✅ Project saved: <b>{name}</b>\n📁 Path: <code>{path}</code>",
+      "step1Title": "📝 <b>New Project - Step 1/3</b>\n\nPlease send the project <b>name</b>.\n\n<i>The name can contain letters, numbers, spaces, hyphens, and underscores.</i>\n\nExamples: <code>MyProject</code>, <code>My Project</code>, <code>project_2024</code>",
+      "step2Title": "📂 <b>New Project - Step 2/3</b>\n\n🏷️ Name: <b>{name}</b>",
+      "step3Title": "📋 <b>New Project - Step 3/3: Confirmation</b>\n\n🏷️ <b>Name:</b> {name}\n📁 <b>Path:</b> <code>{path}</code>\n\nDo you confirm you want to save this project?",
+      "pathNotAllowedStart": "❌ Current path not allowed. The working directory must be in allowed paths."
+    },
+    "mcp": {
+      "title": "🔌 Add MCP Server",
+      "enterName": "📝 Enter the server name (letters, numbers, hyphens, and underscores only):",
+      "selectType": "🔧 Select server type:\n1️⃣ STDIO (local command)\n2️⃣ HTTP (remote server)",
+      "enterCommand": "⚙️ Enter the command to execute (e.g., node, python, npx):",
+      "enterArgs": "📋 Enter command arguments (leave empty if none):\nExample: server.js --port 3000",
+      "enterUrl": "🌐 Enter the server URL (must start with http:// or https://):",
+      "enterEnv": "🌍 Enter environment variables (format: KEY=VALUE,KEY2=VALUE2) or \"-\" to skip:",
+      "summary": "✅ Confirm configuration:\n\n📌 <b>Name:</b> {name}\n📌 <b>Type:</b> {type}\n{details}\n\nDo you want to create this server? (yes/no):",
+      "created": "✅ Server \"{name}\" created successfully!\n✅ Configuration updated. The new server is available.",
+      "cancelled": "❌ Server creation cancelled.",
+      "invalidName": "❌ Invalid name. Use only letters, numbers, hyphens, and underscores.",
+      "invalidUrl": "❌ Invalid URL. Must start with http:// or https://"
+    }
+  },
+  "mcp": {
+    "list": {
+      "title": "📋 MCP Servers (Page {page}/{total})",
+      "empty": "No MCP servers configured.",
+      "page": "💡 Use /mcp_list {page} to view the next page",
+      "emptyWithHelp": "📋 No MCP servers configured.\n\nUse /mcp_add to add one."
+    },
+    "delete": {
+      "success": "✅ Server \"{name}\" deleted successfully.",
+      "notFound": "❌ Server \"{name}\" not found."
+    },
+    "types": {
+      "stdio": "STDIO",
+      "http": "HTTP"
+    },
+    "commands": {
+      "usage": {
+        "add": "Usage: /mcp add [name] [http|stdio] [url|command] [args...]",
+        "remove": "Usage: /mcp remove [name]",
+        "enable": "Usage: /mcp {sub} [name]"
+      },
+      "invalidType": "Invalid type. Use http or stdio.",
+      "configReloaded": "✅ MCP config reloaded.",
+      "commandNotRecognized": "MCP command not recognized."
+    }
+  },
+  "projects": {
+    "list": {
+      "title": "📁 Saved Projects",
+      "empty": "No saved projects.\n\nUse /addproject to save a project.",
+      "noProjects": "No saved projects."
+    },
+    "add": {
+      "success": "✅ Project '{name}' saved successfully!",
+      "alreadyExists": "❌ Project '{name}' already exists.",
+      "usage": "Usage: /addproject [alias] [path]\nOr use /addproject without arguments for the interactive wizard.",
+      "saved": "✅ Project saved: <b>{name}</b>"
+    },
+    "remove": {
+      "success": "✅ Project '{name}' removed successfully.",
+      "notFound": "❌ Project '{name}' not found.",
+      "usage": "Usage: /rmproject [alias]",
+      "removed": "✅ Project removed.",
+      "notFoundShort": "❌ Project not found."
+    },
+    "switch": {
+      "success": "✅ Switched to project '{name}' at: {path}",
+      "notFound": "❌ Project '{name}' not found.",
+      "usage": "Usage: /switch [alias]",
+      "switched": "✅ Switched to <code>{path}</code>",
+      "planModeDeactivated": "\n\n⚠️ Plan mode has been deactivated (plans are project-specific)."
+    }
+  },
+  "navigation": {
+    "pwd": "📍 Current directory:\n<code>{path}</code>",
+    "ls": {
+      "title": "📂 Files and directories in:\n<code>{path}</code>\n\n{items}",
+      "empty": "📭 Directory is empty.",
+      "emptyDirectory": "📭 Empty directory"
+    },
+    "cd": {
+      "success": "✅ Directory changed to:\n<code>{path}</code>",
+      "invalidPath": "❌ Invalid path or path not allowed.",
+      "changed": "✅ Directory changed to <code>{path}</code>",
+      "planModeDeactivated": "\n\n⚠️ Plan mode has been deactivated (plans are project-specific).",
+      "errorStartingWizard": "❌ Error starting navigator: {error}"
+    }
+  },
+  "session": {
+    "stop": {
+      "success": "✅ Current operation stopped.",
+      "noOperation": "No operation in progress."
+    },
+    "reset": {
+      "success": "✅ Session reset successfully.",
+      "noSession": "No active session."
+    },
+    "extend": {
+      "success": "✅ Timeout extended by {minutes} minutes.",
+      "noOperation": "No operation in progress.",
+      "maxReached": "⚠️ Maximum timeout duration reached. Cannot extend further."
+    },
+    "timeout": {
+      "yesExtend": "✅ Yes, extend",
+      "noCancel": "❌ No, cancel",
+      "invalidRequest": "Invalid request",
+      "extending": "Extending time...",
+      "cancelling": "Cancelling operation..."
+    }
+  },
+  "plan": {
+    "enter": "📋 Plan mode activated. Copilot will ask for approval before executing tasks.",
+    "exit": "✅ Plan mode deactivated.",
+    "active": "📋 Plan mode is active. Use /exitplan to deactivate.",
+    "activated": "🎯 <b>Plan Mode Activated</b>\n\nYou can now ask questions about the plan or request its implementation.\nThe conversation will maintain plan context.\n\nTo exit plan mode: /exitplan"
+  },
+  "copilot": {
+    "thinking": "🤔 Thinking...",
+    "generating": "✨ Generating response...",
+    "streaming": "📝 Streaming...",
+    "complete": "✅ Complete",
+    "stopped": "⏹️ Stopped by user",
+    "cliNotAvailable": "Copilot CLI not available. Make sure it is installed (npm i -g @github/copilot) and authenticated (run copilot and /login).",
+    "timeout": "Timeout: no response received from user"
+  },
+  "bot": {
+    "stop": {
+      "noSession": "No active session.",
+      "noOperation": "No operation in progress.",
+      "cancelled": "🛑 Operation cancelled and session stopped.",
+      "stopped": "🛑 Session stopped.",
+      "errorStopping": "⚠️ Error stopping: {error}"
+    },
+    "extend": {
+      "noOperation": "ℹ️ No operation in progress to extend",
+      "maxReached": "⚠️ Maximum limit of 2 hours reached. Cannot extend further.",
+      "errorExtending": "❌ Could not extend timeout. Try again.",
+      "extended": "✅ Timeout extended by {minutes} minutes\n\n⏱️ Elapsed time: {elapsed}\n⏰ New limit: {limit} minutes",
+      "errorExtendingFailed": "❌ Error extending timeout: {error}",
+      "extensionSuccess": "✅ Time extended +{minutes}min",
+      "errorExtensionWarning": "⚠️ Error extending time. Operation will be cancelled.",
+      "autoDetected": "⏱️ Complex task detected, extended time +{minutes}min"
+    },
+    "working": "🔄 Working...",
+    "done": "✅ Done.",
+    "completed": "✅ Completed",
+    "errorWithDetails": "❌ Error: {error}",
+    "operationCancelled": "Operation cancelled.",
+    "waitPlease": "⏳ Wait a moment while I update the configuration...",
+    "serverCreatedWithError": "⚠️ Server created but there was an error updating the session: {error}",
+    "operationInProgressWait": "⏳ There is already an operation in progress. Please wait.",
+    "requestExpired": "Request expired",
+    "responseReceived": "Response received",
+    "optionExpired": "⏰ This option has expired. Please use the command {command} again.",
+    "invalidModel": "Invalid model",
+    "modelChanged": "Model: {model}",
+    "errorChangingModel": "Error changing model",
+    "errorChangingProject": "Error changing project",
+    "errorUpdatingMCP": "Error updating MCP",
+    "errorUserNotIdentified": "Error: User not identified",
+    "errorNavigating": "Error navigating",
+    "errorChangingPage": "Error changing page",
+    "errorConfirming": "Error confirming",
+    "errorCancelling": "Error cancelling",
+    "errorShowingConfirmation": "Error showing confirmation",
+    "errorSavingProject": "Error saving project",
+    "rateLimitExceeded": "⏱️ Too many requests. Wait 1 second before sending another message.",
+    "pageNotExist": "❌ Page {page} does not exist. Total pages: {total}",
+    "serverDeletedSuccess": "✅ Server \"{name}\" deleted successfully.",
+    "mcpAdded": "✅ MCP added: <b>{name}</b>",
+    "mcpToggled": "✅ MCP {action}d: <b>{name}</b>"
+  },
+  "callbacks": {
+    "requestExpired": "Request expired",
+    "responseReceived": "Response received",
+    "optionSelected": "Option selected",
+    "optionExpiredModel": "⏰ This option has expired. Please use the /model command again.",
+    "optionExpiredSwitch": "⏰ This option has expired. Please use the /switch command again.",
+    "optionExpiredMcp": "⏰ This option has expired. Please use the /mcp command again.",
+    "optionExpiredCd": "⏰ This option has expired. Please use /cd again.",
+    "optionExpiredAddProject": "⏰ This option has expired. Please use /addproject again.",
+    "operationInProgress": "Operation in progress",
+    "directoryChanged": "Directory changed",
+    "cancelled": "Cancelled",
+    "confirmation": "Confirmation",
+    "projectSaved": "Project saved",
+    "error": "❌ Error",
+    "modelChangedMessage": "✅ Model changed to <b>{model}</b>",
+    "projectSwitchedAck": "{name}",
+    "mcpToggledAck": "MCP {action}: {name}"
+  },
+  "messageHandler": {
+    "planModeUsage": "Usage: /plan [task]",
+    "operationInProgress": "⏳ There is already an operation in progress. Please wait.",
+    "planError": "❌ Error in plan mode: {error}",
+    "exitPlanError": "❌ Error exiting plan mode: {error}",
+    "resetError": "❌ Error resetting: {error}",
+    "progressMessage": "🔄 Working... (~{bufferSize} chars, {seconds}s)",
+    "progressMessageWithRemaining": "🔄 Working... (~{bufferSize} chars, {seconds}s) | {remainingMinutes}m remaining",
+    "heartbeatNoExtensions": "⏳ Task still in progress ({formattedTime}). Remaining time: {remainingMinutes}m. /stop to cancel",
+    "heartbeatWithExtensions": "⏳ Task still in progress ({formattedTime}). Remaining time: {remainingMinutes}m. ⏱️ Extended {totalExtensions}x. /stop to cancel",
+    "completionFooter": "\n\n⏱️ <i>Completed in {duration}</i>",
+    "completionFooterWithExtensions": "\n\n⏱️ <i>Completed in {duration} | Extensions: {count}</i>",
+    "errorWithDetails": "❌ {error}"
+  },
+  "allowlistSetup": {
+    "title": "🔒 <b>Security Configuration</b>",
+    "noDirectories": "⚠️ No allowed directories configured.",
+    "explanation": "For security, the bot needs to know which directories it can access.",
+    "instructions": "<b>Send the allowed directories separated by commas:</b>\nExample: <code>C:\\Users\\You\\Projects, D:\\Code</code>",
+    "tip": "💡 <i>Tip: You only need to do this once.</i>",
+    "noValidPaths": "❌ <b>No valid paths found</b>",
+    "tryAgain": "\n\nTry again with valid paths.",
+    "warningsTitle": "⚠️ <b>Some paths are not valid and will be ignored:</b>",
+    "confirmationTitle": "✅ <b>Paths to add:</b>",
+    "confirmationQuestion": "\n\n<b>Confirm to save these paths?</b>\n\nReply with <code>yes</code> or <code>no</code>.",
+    "cancelled": "❌ Configuration cancelled. The bot will close now.",
+    "saved": "✅ <b>Configuration saved successfully!</b>",
+    "pathsTitle": "Allowed directories:",
+    "restarting": "🔄 The bot will restart to apply changes...",
+    "editHint": "💡 <i>You can modify these paths by editing ALLOWED_PATHS in the .env file</i>",
+    "invalidResponse": "❌ Invalid response. Reply with <code>yes</code> or <code>no</code>.",
+    "timeout": "⏰ Session expired due to inactivity. The bot will close now.",
+    "timeoutMessage": "⏰ Configuration timeout. The bot will close now.",
+    "updateError": "❌ Error updating configuration: {error}",
+    "saveError": "❌ <b>Error saving configuration</b>",
+    "manualEdit": "Try again or configure ALLOWED_PATHS manually in .env",
+    "closingBot": "Closing bot due to incomplete configuration...",
+    "appliedWithoutRestart": "✅ Allowlist applied without restart."
+  },
+  "allowlistAdmin": {
+    "usage": "Usage: /allowpath [path]",
+    "promptAddPath": "⚠️ Path <code>{path}</code> is not allowed.\n\nDo you want to add it to ALLOWED_PATHS?",
+    "buttonAddPath": "✅ Add path",
+    "cancelled": "❌ Operation cancelled.",
+    "invalidPath": "❌ Path <code>{path}</code> does not exist.",
+    "notDirectory": "❌ Path <code>{path}</code> is not a directory.",
+    "alreadyAllowed": "ℹ️ Path <code>{path}</code> is already in ALLOWED_PATHS.",
+    "added": "✅ Path added to ALLOWED_PATHS:\n<code>{path}</code>",
+    "restartingNotice": "🔄 The bot will restart to apply changes.",
+    "appliedWithoutRestart": "✅ Allowlist updated without restart."
+  },
+  "pathSetup": {
+    "errorValidating": "Error validating path: {error}",
+    "notAbsolute": "Path is not absolute",
+    "notExists": "Path does not exist",
+    "notDirectory": "Path is not a directory"
+  },
+  "mcpWizard": {
+    "alreadyActive": "You already have a wizard in progress. Use \"cancel\" to cancel it first.",
+    "noActiveSession": "No active session. Use /mcp_add to start.",
+    "sessionExpired": "Session has expired due to inactivity. Please start again with /mcp_add.",
+    "enterName": "📝 Enter the server name (letters, numbers, hyphens, and underscores only):",
+    "selectType": "🔧 Select server type:\n1️⃣ STDIO (local command)\n2️⃣ HTTP (remote server)",
+    "typeStdio": "STDIO (local command)",
+    "typeHttp": "HTTP (remote server)",
+    "enterCommand": "⚙️ Enter the command to execute (e.g., node, python, npx):",
+    "enterUrl": "🌐 Enter the server URL (must start with http:// or https://):",
+    "enterArgs": "📋 Enter command arguments (leave empty if none):\nExample: server.js --port 3000",
+    "enterEnv": "🌍 Enter environment variables (format: KEY=VALUE,KEY2=VALUE2) or \"-\" to skip:",
+    "envParseHelp": "Expected format:\n- Simple: KEY=value,KEY2=value2\n- Quoted: KEY=\"value,with,commas\"\n- Escaped: KEY=value\\,escaped\n\nPlease try again or send '-' to skip.",
+    "confirmSummary": "✅ Confirm configuration:\n\n📌 <b>Name:</b> {name}\n📌 <b>Type:</b> {type}\n{details}\n\nDo you want to create this server? (yes/no):",
+    "detailsStdio": "📌 <b>Command:</b> <code>{command}</code>\n📌 <b>Args:</b> {args}\n📌 <b>Env:</b> {env}",
+    "detailsHttp": "📌 <b>URL:</b> <code>{url}</code>",
+    "created": "✅ Server \"{name}\" created successfully!",
+    "cancelled": "❌ Server creation cancelled.",
+    "invalidState": "Invalid wizard state.",
+    "nameEmpty": "❌ Name cannot be empty.",
+    "invalidName": "❌ Name can only contain letters, numbers, hyphens, and underscores.",
+    "nameAlreadyExists": "❌ A server with name \"{name}\" already exists.\n\nTry another name:",
+    "invalidType": "❌ Invalid type.",
+    "commandEmpty": "❌ Command cannot be empty.",
+    "urlEmpty": "❌ URL cannot be empty.",
+    "invalidUrl": "❌ Invalid URL.",
+    "envParseError": "❌ Error parsing environment variables:\n\n{error}\n\nTry again or send <code>-</code> to skip.",
+    "confirmDangerous": "⚠️ <b>SECURITY WARNING</b>\n\nThe command contains dangerous arguments: {flags}\n\nFull command: `{command}`\n\n{warning}\n\nDo you understand the risk and want to continue?\n\nRespond:\n\"confirmar\" - To add the server (at your own risk)\n\"cancelar\" - To cancel the operation",
+    "confirmDangerousInvalid": "⚠️ Invalid response. Respond:\n\"confirmar\" - To confirm and add the server\n\"cancelar\" - To cancel the operation",
+    "invalidConfirmation": "❌ Invalid response.",
+    "errorCreatingServer": "❌ Error creating server: {error}",
+    "operationCancelled": "❌ Operation cancelled by user.",
+    "cancelKeywords": "Type \"cancel\" to cancel the operation",
+    "noActiveWizard": "No active wizard session."
+  },
+  "envParser": {
+    "errorParsing": "Error parsing environment variables: {error}",
+    "unknownError": "Unknown error parsing environment variables"
+  },
+  "serverManagement": {
+    "securityWarning": "⚠️ <b>SECURITY WARNING</b>\n\nThe command contains flags that could allow arbitrary code execution or security risks.",
+    "flagExplanations": {
+      "eval": "--eval / -e: Allows execution of arbitrary code",
+      "allowUnsafe": "--allow-unsafe: Disables security protections",
+      "exec": "--exec: Can execute shell commands",
+      "import": "--import: Can load arbitrary modules",
+      "unsafeInline": "--unsafe-inline: Allows inline code execution",
+      "-e": "Executes JavaScript/Perl/Ruby code directly",
+      "--eval": "Executes JavaScript code directly",
+      "-c": "Executes shell commands or Python code directly",
+      "--code": "Executes code directly",
+      "-p": "Evaluates and prints code",
+      "--print": "Evaluates and prints code",
+      "--interactive": "Interactive mode that allows command execution",
+      "-i": "Interactive mode"
+    },
+    "securityRecommendation": "Only proceed if you trust the source of this command and understand the security implications.",
+    "dangerousArguments": "Dangerous arguments detected: {flags}",
+    "validation": {
+      "commandEmpty": "Command cannot be empty",
+      "urlEmpty": "URL cannot be empty",
+      "nameEmpty": "Server name cannot be empty",
+      "nameInvalid": "Name can only contain letters, numbers, hyphens, and underscores",
+      "urlInvalid": "Invalid URL",
+      "codeExecution": "code execution"
+    }
+  }
+}

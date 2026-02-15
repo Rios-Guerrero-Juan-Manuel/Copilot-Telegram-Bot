@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  build-and-test:
+    name: Build/Test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run TypeScript build
+        run: npm run build
+
+      - name: Run full test suite
+        run: npm test
+
+      - name: Smoke test better-sqlite3
+        run: node -e "const Database=require('better-sqlite3');const db=new Database(':memory:');db.exec('CREATE TABLE smoke(id INTEGER PRIMARY KEY, name TEXT);');db.prepare('INSERT INTO smoke(name) VALUES (?)').run('ok');const row=db.prepare('SELECT name FROM smoke WHERE id = 1').get();if(!row||row.name!=='ok') throw new Error('better-sqlite3 smoke failed');db.close();"
+
+      - name: Pack npm package
+        run: npm pack
+
+      - name: Install packed CLI globally
+        run: node -e "const fs=require('fs');const cp=require('child_process');const tgz=fs.readdirSync('.').find(f=>f.endsWith('.tgz'));if(!tgz) throw new Error('Package tarball not found');cp.execSync(`npm install -g ${tgz}`,{stdio:'inherit'});"
+
+      - name: Smoke start CLI command
+        run: |
+          node -e "const {spawn}=require('child_process');const isWin=process.platform==='win32';const cmd=isWin?'copilot-telegram-bot.cmd':'copilot-telegram-bot';const env={...process.env,TELEGRAM_BOT_TOKEN:'test-token',TELEGRAM_CHAT_ID:'1',DEFAULT_PROJECT_PATH:process.cwd(),ALLOWED_PATHS:process.cwd()};const child=spawn(cmd,[],{env,stdio:'ignore'});let settled=false;const done=(code)=>{if(settled) return;settled=true;clearTimeout(timer);if(code==='error'){process.exit(1);}process.exit(0);};const timer=setTimeout(()=>{try{child.kill();}catch{}done('timeout');},10000);child.on('error',()=>done('error'));child.on('exit',()=>done('exit'));"
+
+  regression-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run targeted regression suite
+        run: npm run test:regression

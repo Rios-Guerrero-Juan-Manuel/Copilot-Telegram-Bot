@@ -1,0 +1,675 @@
+{
+  "tsErrors": [
+    {
+      "file": "src/copilot/tools.ts",
+      "line": 40,
+      "col": 5,
+      "code": "TS2322",
+      "message": "Type 'ZodType<AskUserParams, ZodTypeDef, AskUserParams>' is not assignable to type 'Record<string, unknown> | ZodSchema<AskUserParams> | undefined'."
+    },
+    {
+      "file": "src/copilot/tools.ts",
+      "line": 119,
+      "col": 5,
+      "code": "TS2322",
+      "message": "Type 'ZodType<LogMessageParams, ZodTypeDef, LogMessageParams>' is not assignable to type 'Record<string, unknown> | ZodSchema<LogMessageParams> | undefined'."
+    },
+    {
+      "file": "src/copilot/tools.ts",
+      "line": 138,
+      "col": 5,
+      "code": "TS2322",
+      "message": "Type 'ZodType<SendFileParams, ZodTypeDef, SendFileParams>' is not assignable to type 'Record<string, unknown> | ZodSchema<SendFileParams> | undefined'."
+    }
+  ],
+  "tsErrorCount": 3,
+  "tsByCode": {
+    "code": "TS2322",
+    "count": 3
+  },
+  "failedFiles": [
+    {
+      "file": "tests/allowlist-bypass-commands-fix.test.ts > Allowlist Bypass Fix - /plan and /exitplan Commands > /exitplan command security > should allow /exitplan when cwd is in allowlist",
+      "count": 2
+    },
+    {
+      "file": "tests/integration/telegram-e2e.test.ts > E2E Bot Tests > Wizard Flow > should handle wizard timeout after 5 minutes of inactivity",
+      "count": 2
+    },
+    {
+      "file": "tests/integration/telegram-e2e.test.ts > E2E Bot Tests > Wizard Flow > should handle MCP wizard cancellation flow",
+      "count": 2
+    },
+    {
+      "file": "tests/integration/telegram-e2e.test.ts > E2E Bot Tests > Wizard Flow > should complete full MCP wizard flow for STDIO server",
+      "count": 2
+    },
+    {
+      "file": "tests/integration/telegram-e2e.test.ts > E2E Bot Tests > Session Reset > should handle /reset command and clear session",
+      "count": 2
+    },
+    {
+      "file": "tests/integration/telegram-e2e.test.ts > E2E Bot Tests > Plan Mode Flow > should exit plan mode when changing directory with /cd",
+      "count": 2
+    },
+    {
+      "file": "tests/integration/telegram-e2e.test.ts > E2E Bot Tests > Plan Mode Flow > should activate and deactivate plan mode: /plan ÔåÆ approval ÔåÆ /exitplan",
+      "count": 2
+    },
+    {
+      "file": "tests/integration/telegram-e2e.test.ts > E2E Bot Tests > MCP Server Management > should list MCP servers",
+      "count": 2
+    },
+    {
+      "file": "tests/integration/telegram-e2e.test.ts > E2E Bot Tests > MCP Server Management > should handle MCP server enable/disable toggle",
+      "count": 2
+    },
+    {
+      "file": "tests/integration/telegram-e2e.test.ts > E2E Bot Tests > Error Recovery > should handle message sending with retry on network failure",
+      "count": 2
+    },
+    {
+      "file": "tests/integration/telegram-e2e.test.ts > E2E Bot Tests > Error Recovery > should handle concurrent stop commands gracefully",
+      "count": 2
+    },
+    {
+      "file": "tests/integration/telegram-e2e.test.ts > E2E Bot Tests > Error Recovery > should handle AbortController cancellation cleanly",
+      "count": 2
+    },
+    {
+      "file": "tests/integration/telegram-e2e.test.ts > E2E Bot Tests > Error Recovery > should clear cancellation state after operation completes",
+      "count": 2
+    },
+    {
+      "file": "tests/integration/telegram-e2e.test.ts > E2E Bot Tests > Basic Flow > should reject /cd to non-allowed path",
+      "count": 2
+    },
+    {
+      "file": "tests/integration/telegram-e2e.test.ts > E2E Bot Tests > Basic Flow > should handle complete conversation flow: /start ÔåÆ /cd ÔåÆ message ÔåÆ response",
+      "count": 2
+    },
+    {
+      "file": "tests/integration/telegram-e2e.test.ts > E2E Bot Tests > Model Selection > should handle model selection via callback",
+      "count": 2
+    },
+    {
+      "file": "tests/allowlist-bypass-commands-fix.test.ts > Allowlist Bypass Fix - /plan and /exitplan Commands > /exitplan command security > should block /exitplan when cwd is not in allowlist",
+      "count": 2
+    },
+    {
+      "file": "tests/allowlist-bypass-commands-fix.test.ts > Allowlist Bypass Fix - /plan and /exitplan Commands > /plan command security > should allow /plan when cwd is in allowlist",
+      "count": 2
+    },
+    {
+      "file": "tests/allowlist-bypass-commands-fix.test.ts > Allowlist Bypass Fix - /plan and /exitplan Commands > /plan command security > should block /plan when cwd is not in allowlist",
+      "count": 2
+    },
+    {
+      "file": "tests/allowlist-bypass-commands-fix.test.ts > Allowlist Bypass Fix - /plan and /exitplan Commands > Bypass scenarios for plan commands > should block /exitplan with configured DB but empty .env allowlist",
+      "count": 2
+    },
+    {
+      "file": "tests/allowlist-bypass-commands-fix.test.ts > Allowlist Bypass Fix - /plan and /exitplan Commands > Bypass scenarios for plan commands > should block /plan with configured DB but empty .env allowlist",
+      "count": 2
+    },
+    {
+      "file": "tests/allowlist-bypass-commands-fix.test.ts > Allowlist Bypass Fix - /plan and /exitplan Commands > Complete security coverage verification > all switchProject calls should have allowlist validation",
+      "count": 2
+    },
+    {
+      "file": "tests/allowlist-bypass-commands-fix.test.ts > Allowlist Bypass Fix - /plan and /exitplan Commands > Integration with existing security checks > should maintain existing callback security checks",
+      "count": 2
+    },
+    {
+      "file": "tests/allowlist-bypass-commands-fix.test.ts > Allowlist Bypass Fix - /plan and /exitplan Commands > Integration with existing security checks > should maintain existing /cd security checks",
+      "count": 2
+    },
+    {
+      "file": "tests/allowlist-bypass-commands-fix.test.ts > Allowlist Bypass Fix - /plan and /exitplan Commands > Integration with existing security checks > should maintain existing /switch security checks",
+      "count": 2
+    },
+    {
+      "file": "tests/mcp-add-command-allowlist.test.ts > Task 1.2: /mcp add Command Allowlist Validation > Bypass Prevention > should prevent bypassing allowlist with full path to disallowed executable",
+      "count": 1
+    },
+    {
+      "file": "tests/mcp-add-command-allowlist.test.ts > Task 1.2: /mcp add Command Allowlist Validation > Security: Executable Allowlist Validation > should ACCEPT allowed executable via /mcp add stdio",
+      "count": 1
+    },
+    {
+      "file": "tests/mcp-add-command-allowlist.test.ts > Task 1.2: /mcp add Command Allowlist Validation > Security: Executable Allowlist Validation > should ACCEPT npx from default allowlist",
+      "count": 1
+    },
+    {
+      "file": "tests/mcp-add-command-allowlist.test.ts > Task 1.2: /mcp add Command Allowlist Validation > Security: Executable Allowlist Validation > should ACCEPT python from default allowlist",
+      "count": 1
+    },
+    {
+      "file": "tests/mcp-add-command-allowlist.test.ts > Task 1.2: /mcp add Command Allowlist Validation > Security: Executable Allowlist Validation > should REJECT bash executable (shell injection risk)",
+      "count": 1
+    },
+    {
+      "file": "tests/mcp-add-command-allowlist.test.ts > Task 1.2: /mcp add Command Allowlist Validation > Bypass Prevention > should detect command injection attempts in executable name",
+      "count": 1
+    },
+    {
+      "file": "tests/mcp-add-command-allowlist.test.ts > Task 1.2: /mcp add Command Allowlist Validation > Security: Executable Allowlist Validation > should REJECT disallowed executable via /mcp add stdio",
+      "count": 1
+    },
+    {
+      "file": "tests/mcp-add-command-allowlist.test.ts > Task 1.2: /mcp add Command Allowlist Validation > Security: Executable Allowlist Validation > should REJECT sh executable (shell injection risk)",
+      "count": 1
+    },
+    {
+      "file": "tests/mcp-add-command-allowlist.test.ts > Task 1.2: /mcp add Command Allowlist Validation > Security: Executable Allowlist Validation > should show user-friendly error message with allowed executables list",
+      "count": 1
+    },
+    {
+      "file": "tests/mcp-registry.test.ts > McpRegistry > loads servers from config file and toggles",
+      "count": 1
+    },
+    {
+      "file": "tests/mcp-add-command-allowlist.test.ts > Task 1.2: /mcp add Command Allowlist Validation > Security: Executable Allowlist Validation > should NOT validate HTTP servers (no command to check)",
+      "count": 1
+    },
+    {
+      "file": "tests/mcp-add-command-allowlist.test.ts > Task 1.2: /mcp add Command Allowlist Validation > Backward Compatibility > should maintain existing usage message format",
+      "count": 1
+    },
+    {
+      "file": "tests/keyboard-expiration.test.ts > Keyboard Expiration > isCallbackValid > should handle callback data without timestamp",
+      "count": 1
+    },
+    {
+      "file": "tests/mcp-add-command-allowlist.test.ts > Task 1.2: /mcp add Command Allowlist Validation > Backward Compatibility > should maintain existing /mcp add http functionality",
+      "count": 1
+    },
+    {
+      "file": "tests/keyboard-expiration.test.ts > Keyboard Expiration > isCallbackValid > should reject expired callback data",
+      "count": 1
+    },
+    {
+      "file": "tests/keyboard-expiration.test.ts > Keyboard Expiration > isCallbackValid > should handle invalid timestamp gracefully",
+      "count": 1
+    },
+    {
+      "file": "tests/mcp-registry.test.ts > McpRegistry > public load() method reloads servers from database",
+      "count": 1
+    },
+    {
+      "file": "tests/keyboard-expiration.test.ts > Keyboard Expiration > isCallbackValid > should handle callback data with multiple colons",
+      "count": 1
+    },
+    {
+      "file": "tests/keyboard-expiration.test.ts > Keyboard Expiration > isCallbackValid > should accept fresh callback data",
+      "count": 1
+    },
+    {
+      "file": "tests/keyboard-expiration.test.ts > Keyboard Expiration > isCallbackValid > should accept callback within TTL",
+      "count": 1
+    },
+    {
+      "file": "tests/keyboard-expiration.test.ts > Keyboard Expiration > generateCallbackData > should include timestamp in callback_data",
+      "count": 1
+    },
+    {
+      "file": "tests/keyboard-expiration.test.ts > Keyboard Expiration > generateCallbackData > should handle multiple colons in data",
+      "count": 1
+    },
+    {
+      "file": "tests/keyboard-expiration.test.ts > Keyboard Expiration > generateCallbackData > should generate different timestamps for sequential calls",
+      "count": 1
+    },
+    {
+      "file": "tests/keyboard-expiration.test.ts > Keyboard Expiration > extractCallbackParts > should handle data with colons",
+      "count": 1
+    },
+    {
+      "file": "tests/keyboard-expiration.test.ts > Keyboard Expiration > extractCallbackParts > should extract action and data from callback with timestamp",
+      "count": 1
+    },
+    {
+      "file": "tests/mcp-add-command-allowlist.test.ts > Task 1.2: /mcp add Command Allowlist Validation > Backward Compatibility > should maintain existing error messages for invalid type",
+      "count": 1
+    },
+    {
+      "file": "tests/message-handler.test.ts > Heartbeat functionality > should send heartbeat warning after HEARTBEAT_WARNING_INTERVAL without events",
+      "count": 1
+    },
+    {
+      "file": "tests/race-condition-fix.test.ts > Race Condition Fix - Timeout Extension Mutex > Mutex Infrastructure > should check if lock is already held before acquiring",
+      "count": 1
+    },
+    {
+      "file": "tests/race-condition-fix.test.ts > Race Condition Fix - Timeout Extension Mutex > Mutex Infrastructure > should delete lock in releaseExtensionLock",
+      "count": 1
+    },
+    {
+      "file": "tests/tools-ask-user.test.ts > ask_telegram_user tool > cancellation > should handle user cancellation via cancel()",
+      "count": 1
+    },
+    {
+      "file": "tests/tools-ask-user.test.ts > ask_telegram_user tool > concurrent prompts > should handle multiple simultaneous prompts with different tokens",
+      "count": 1
+    },
+    {
+      "file": "tests/tools-ask-user.test.ts > ask_telegram_user tool > concurrent prompts > should prevent old token from resolving new prompt",
+      "count": 1
+    },
+    {
+      "file": "tests/tools-ask-user.test.ts > ask_telegram_user tool > concurrent prompts > should route responses to correct promise based on token",
+      "count": 1
+    },
+    {
+      "file": "tests/tools-ask-user.test.ts > ask_telegram_user tool > edge cases > should handle rapid cancel/restart cycles",
+      "count": 1
+    },
+    {
+      "file": "tests/tools-ask-user.test.ts > ask_telegram_user tool > edge cases > should handle special characters in options",
+      "count": 1
+    },
+    {
+      "file": "tests/tools-ask-user.test.ts > ask_telegram_user tool > hasPending utility > should return false after cancellation",
+      "count": 1
+    },
+    {
+      "file": "tests/tools-ask-user.test.ts > ask_telegram_user tool > hasPending utility > should return false after response received",
+      "count": 1
+    },
+    {
+      "file": "tests/tools-ask-user.test.ts > ask_telegram_user tool > hasPending utility > should return false after timeout",
+      "count": 1
+    },
+    {
+      "file": "tests/tools-ask-user.test.ts > ask_telegram_user tool > hasPending utility > should return true when ask_user is pending",
+      "count": 1
+    },
+    {
+      "file": "tests/tools-ask-user.test.ts > ask_telegram_user tool > timeout handling > should cleanup state on timeout",
+      "count": 1
+    },
+    {
+      "file": "tests/tools-ask-user.test.ts > ask_telegram_user tool > token matching > should accept response from correct user with matching token",
+      "count": 1
+    },
+    {
+      "file": "tests/tools-ask-user.test.ts > ask_telegram_user tool > token matching > should accept response without token verification when token not required",
+      "count": 1
+    },
+    {
+      "file": "tests/types-errors.test.ts > Error Conversion Functions > toErrorWithMessage > should convert undefined to Error",
+      "count": 1
+    },
+    {
+      "file": "tests/types-sanitize.test.ts > Sanitization Types > isJsonValue > should handle Date objects (returns false as not JSON-serializable)",
+      "count": 1
+    },
+    {
+      "file": "tests/tools-ask-user.test.ts > ask_telegram_user tool > cancellation > should clear timeout when cancelled",
+      "count": 1
+    },
+    {
+      "file": "tests/keyboard-expiration.test.ts > Keyboard Expiration > Config - KEYBOARD_TTL_MS > should use default TTL of 5 minutes",
+      "count": 1
+    },
+    {
+      "file": "tests/tools-ask-user.test.ts > ask_telegram_user tool > cancellation > should cleanup state after cancellation",
+      "count": 1
+    },
+    {
+      "file": "tests/timeout-confirmation.test.ts > Interactive Timeout Confirmation > Callback Handler Registration > should register callback handler for timeout responses",
+      "count": 1
+    },
+    {
+      "file": "tests/race-condition-fix.test.ts > Race Condition Fix - Timeout Extension Mutex > Mutex Infrastructure > should have timeoutExtensionLocks Map declared",
+      "count": 1
+    },
+    {
+      "file": "tests/sanitize.test.ts > sanitizeForLogging > should handle null and undefined values",
+      "count": 1
+    },
+    {
+      "file": "tests/sdk-event-logging.test.ts > SDK Event Logging > should log stale period warning when no events for >2 minutes",
+      "count": 1
+    },
+    {
+      "file": "tests/security-command-injection.test.ts > Command Injection Security Tests > Edge Cases and Fuzzing > should handle mixed case and variations",
+      "count": 1
+    },
+    {
+      "file": "tests/security-command-injection.test.ts > Command Injection Security Tests > Executables Outside Allowlist > should reject executable with full path outside allowlist",
+      "count": 1
+    },
+    {
+      "file": "tests/security-command-injection.test.ts > Command Injection Security Tests > HTTP Server Security > should accept valid http URL",
+      "count": 1
+    },
+    {
+      "file": "tests/security-command-injection.test.ts > Command Injection Security Tests > Path Traversal in Executable Path > should extract basename correctly from full path",
+      "count": 1
+    },
+    {
+      "file": "tests/security-command-injection.test.ts > Command Injection Security Tests > Path Traversal in Executable Path > should handle Windows paths correctly",
+      "count": 1
+    },
+    {
+      "file": "tests/security-command-injection.test.ts > Command Injection Security Tests > Path Traversal in Executable Path > should reject command with absolute path to system binary",
+      "count": 1
+    },
+    {
+      "file": "tests/security-fixes.test.ts > Security and Architecture Fixes > Fix #5: URL Protocol Validation > should accept valid http URLs",
+      "count": 1
+    },
+    {
+      "file": "tests/security-integration.test.ts > Security Fixes Integration Tests > should handle all security scenarios in end-to-end flow",
+      "count": 1
+    },
+    {
+      "file": "tests/security-path-traversal.test.ts > Path Traversal Security Tests > Path Traversal Attacks > should block path traversal with URL encoding",
+      "count": 1
+    },
+    {
+      "file": "tests/security-path-traversal.test.ts > Path Traversal Security Tests > Path Traversal Attacks > should block Unicode path traversal attempts",
+      "count": 1
+    },
+    {
+      "file": "tests/tarea-4-5-ci-cd.test.ts [ tests/tarea-4-5-ci-cd.test.ts ]",
+      "count": 1
+    },
+    {
+      "file": "tests/timeout-confirmation.test.ts > Interactive Timeout Confirmation > Callback Handler Registration > should handle callback query for extend action",
+      "count": 1
+    },
+    {
+      "file": "tests/timeout-extension.test.ts > SessionManager - Timeout Extension > Critical Bug Fix: Manual Extension Timeout Reset > should use Math.max(0, ...) to prevent negative remaining time",
+      "count": 1
+    },
+    {
+      "file": "tests/keyboard-expiration.test.ts > Keyboard Expiration > Config - KEYBOARD_TTL_MS > should respect custom TTL from environment",
+      "count": 1
+    },
+    {
+      "file": "tests/bot-callbacks.test.ts > Bot Callbacks > All Callbacks Registered > should register all expected callback patterns",
+      "count": 1
+    },
+    {
+      "file": "tests/keyboard-expiration.test.ts > Callback Handlers - Expiration Validation > should process valid callback normally",
+      "count": 1
+    },
+    {
+      "file": "tests/database-sqljs-migration.test.ts > DatabaseManager - sql.js Migration > should create all required tables on migration",
+      "count": 1
+    },
+    {
+      "file": "tests/database-sqljs-migration.test.ts > DatabaseManager - sql.js Migration > should auto-save on modification when using file database",
+      "count": 1
+    },
+    {
+      "file": "tests/commands-reset.test.ts > /reset command > should respond when no active session exists",
+      "count": 1
+    },
+    {
+      "file": "tests/commands-reset.test.ts > /reset command > should reset active session and clear busy state",
+      "count": 1
+    },
+    {
+      "file": "tests/commands-reset.test.ts > /reset command > should log reset action with user ID and project path",
+      "count": 1
+    },
+    {
+      "file": "tests/commands-reset.test.ts > /reset command > should clear busy state even on error",
+      "count": 1
+    },
+    {
+      "file": "tests/bot-callbacks.test.ts > Bot Callbacks > Project Switch Callback > should switch project successfully",
+      "count": 1
+    },
+    {
+      "file": "tests/bot-callbacks.test.ts > Bot Callbacks > Project Switch Callback > should reject when session is busy",
+      "count": 1
+    },
+    {
+      "file": "tests/bot-callbacks.test.ts > Bot Callbacks > Project Switch Callback > should reject path outside allowlist",
+      "count": 1
+    },
+    {
+      "file": "tests/bot-callbacks.test.ts > Bot Callbacks > Project Switch Callback > should reject non-existent project",
+      "count": 1
+    },
+    {
+      "file": "tests/bot-callbacks.test.ts > Bot Callbacks > Project Switch Callback > should reject non-directory path",
+      "count": 1
+    },
+    {
+      "file": "tests/bot-callbacks.test.ts > Bot Callbacks > Project Switch Callback > should reject non-accessible path",
+      "count": 1
+    },
+    {
+      "file": "tests/bot-callbacks.test.ts > Bot Callbacks > Project Switch Callback > should log errors and answer callback on switch failure",
+      "count": 1
+    },
+    {
+      "file": "tests/bot-callbacks.test.ts > Bot Callbacks > Project Switch Callback > should handle stat error",
+      "count": 1
+    },
+    {
+      "file": "tests/bot-callbacks.test.ts > Bot Callbacks > Project Switch Callback > should always clear busy state in finally block",
+      "count": 1
+    },
+    {
+      "file": "tests/bot-callbacks.test.ts > Bot Callbacks > Model Change Callback > should reject when session is busy",
+      "count": 1
+    },
+    {
+      "file": "tests/bot-callbacks.test.ts > Bot Callbacks > Model Change Callback > should reject invalid model",
+      "count": 1
+    },
+    {
+      "file": "tests/bot-callbacks.test.ts > Bot Callbacks > Model Change Callback > should log errors and answer callback on failure",
+      "count": 1
+    },
+    {
+      "file": "tests/bot-callbacks.test.ts > Bot Callbacks > Model Change Callback > should change model successfully with valid model",
+      "count": 1
+    },
+    {
+      "file": "tests/bot-callbacks.test.ts > Bot Callbacks > Model Change Callback > should always clear busy state in finally block",
+      "count": 1
+    },
+    {
+      "file": "tests/bot-callbacks.test.ts > Bot Callbacks > MCP Toggle Callback > should reject when session is busy",
+      "count": 1
+    },
+    {
+      "file": "tests/bot-callbacks.test.ts > Bot Callbacks > MCP Toggle Callback > should log errors and answer callback on toggle failure",
+      "count": 1
+    },
+    {
+      "file": "tests/bot-callbacks.test.ts > Bot Callbacks > MCP Toggle Callback > should handle non-existent MCP server",
+      "count": 1
+    },
+    {
+      "file": "tests/bot-callbacks.test.ts > Bot Callbacks > MCP Toggle Callback > should enable MCP server successfully",
+      "count": 1
+    },
+    {
+      "file": "tests/bot-callbacks.test.ts > Bot Callbacks > MCP Toggle Callback > should disable MCP server successfully",
+      "count": 1
+    },
+    {
+      "file": "tests/bot-callbacks.test.ts > Bot Callbacks > MCP Toggle Callback > should always clear busy state in finally block",
+      "count": 1
+    },
+    {
+      "file": "tests/bot-callbacks.test.ts > Bot Callbacks > Edge Cases and Error Handling > should handle missing from.username gracefully",
+      "count": 1
+    },
+    {
+      "file": "tests/bot-callbacks.test.ts > Bot Callbacks > Edge Cases and Error Handling > should handle missing from.id gracefully",
+      "count": 1
+    },
+    {
+      "file": "tests/bot-callbacks.test.ts > Bot Callbacks > Edge Cases and Error Handling > should handle empty callback match groups",
+      "count": 1
+    },
+    {
+      "file": "tests/database-sqljs-migration.test.ts > DatabaseManager - sql.js Migration > should create database file on disk",
+      "count": 1
+    },
+    {
+      "file": "tests/database-sqljs-migration.test.ts > DatabaseManager - sql.js Migration > should execute INSERT and SELECT queries",
+      "count": 1
+    },
+    {
+      "file": "tests/database-sqljs-migration.test.ts > DatabaseManager - sql.js Migration > should get all rows with getAll helper",
+      "count": 1
+    },
+    {
+      "file": "tests/database-sqljs-migration.test.ts > DatabaseManager - sql.js Migration > should get single row with getFirst helper",
+      "count": 1
+    },
+    {
+      "file": "tests/integration/verification.test.ts > Phase 4: Comprehensive Verification Tests > Error Handling and Edge Cases > should handle null and undefined in sanitization",
+      "count": 1
+    },
+    {
+      "file": "tests/auto-extension.test.ts > Auto-Extension Logic > Auto-extension triggers at 70% of timeout > should trigger auto-extension at 70% of initial timeout with recent activity",
+      "count": 1
+    },
+    {
+      "file": "tests/integration/telegram-e2e.test.ts > E2E Bot Tests > Plan Mode Flow > should prevent concurrent operations when busy",
+      "count": 1
+    },
+    {
+      "file": "tests/integration/telegram-e2e.test.ts > E2E Bot Tests > Plan Mode Flow > should handle /plan without task text",
+      "count": 1
+    },
+    {
+      "file": "tests/wizard-ttl-cleanup.test.ts > Wizard TTL Cleanup > AllowlistSetupWizard > should log cleanup event",
+      "count": 1
+    },
+    {
+      "file": "tests/integration/telegram-e2e.test.ts > E2E Bot Tests > Error Recovery > should handle session recreation after network failure",
+      "count": 1
+    },
+    {
+      "file": "tests/allowlist-graceful-shutdown.test.ts > AllowlistSetupWizard - Graceful Shutdown (Issue #5) > Shutdown Timeout (10s Safety) > should exit with code 1 when shutdown timeout is exceeded",
+      "count": 1
+    },
+    {
+      "file": "tests/async-io.test.ts > Async I/O Operations > database async initialization > should create database directory asynchronously",
+      "count": 1
+    },
+    {
+      "file": "tests/async-io.test.ts > Async I/O Operations > McpRegistry async file operations > should not block event loop during large file reads",
+      "count": 1
+    },
+    {
+      "file": "tests/async-io.test.ts > Async I/O Operations > path-setup async operations > should not block event loop during env file update",
+      "count": 1
+    },
+    {
+      "file": "tests/atomic-lock-integration.test.ts > Message Handler - Timeout Extension Lock Integration > Memory Leak Prevention > should not leak locks over many extension cycles",
+      "count": 1
+    },
+    {
+      "file": "tests/integration/telegram-e2e.test.ts > E2E Bot Tests > Basic Flow > should handle /status command showing current state",
+      "count": 1
+    },
+    {
+      "file": "tests/input-size-limits.test.ts > Message Size Validation > should truncate messages over the size limit",
+      "count": 1
+    },
+    {
+      "file": "tests/input-size-limits.test.ts > Message Size Validation > should send warning message to user when truncating",
+      "count": 1
+    },
+    {
+      "file": "tests/keyboard-expiration.test.ts > Callback Handlers - Expiration Validation > should validate timestamp before processing model callback",
+      "count": 1
+    },
+    {
+      "file": "tests/input-size-limits.test.ts > Message Size Validation > should log truncation events",
+      "count": 1
+    },
+    {
+      "file": "tests/input-size-limits.test.ts > Message Size Validation > should allow messages under the size limit",
+      "count": 1
+    },
+    {
+      "file": "tests/input-size-limits.test.ts > Buffer Size Validation (Streaming) > should warn when streaming buffer exceeds size limit",
+      "count": 1
+    },
+    {
+      "file": "tests/input-size-limits.test.ts > Buffer Size Validation (Streaming) > should only warn once per buffer overflow",
+      "count": 1
+    },
+    {
+      "file": "tests/input-size-limits.test.ts > Buffer Size Validation (Streaming) > should log buffer size warnings",
+      "count": 1
+    },
+    {
+      "file": "tests/input-size-limits.test.ts > Buffer Size Validation (Streaming) > should include buffer size in warning message",
+      "count": 1
+    },
+    {
+      "file": "tests/input-size-limits.test.ts > Buffer Size Validation (Streaming) > should allow streaming buffer under size limit",
+      "count": 1
+    },
+    {
+      "file": "tests/database-sqljs-migration.test.ts > DatabaseManager - sql.js Migration > should support UPSERT (INSERT OR REPLACE)",
+      "count": 1
+    },
+    {
+      "file": "tests/database-sqljs-migration.test.ts > DatabaseManager - sql.js Migration > should support ON CONFLICT for mcp_servers upsert",
+      "count": 1
+    },
+    {
+      "file": "tests/database-sqljs-migration.test.ts > DatabaseManager - sql.js Migration > should load existing database from file",
+      "count": 1
+    },
+    {
+      "file": "tests/database-sqljs-migration.test.ts > DatabaseManager - sql.js Migration > should initialize in-memory database",
+      "count": 1
+    },
+    {
+      "file": "tests/database-sqljs-migration.test.ts > DatabaseManager - sql.js Migration > should handle UPDATE queries",
+      "count": 1
+    },
+    {
+      "file": "tests/database-sqljs-migration.test.ts > DatabaseManager - sql.js Migration > should handle migration of allowed_paths_configured column",
+      "count": 1
+    },
+    {
+      "file": "tests/database-sqljs-migration.test.ts > DatabaseManager - sql.js Migration > should handle lastInsertRowid correctly",
+      "count": 1
+    },
+    {
+      "file": "tests/database-sqljs-migration.test.ts > DatabaseManager - sql.js Migration > should handle DELETE queries",
+      "count": 1
+    },
+    {
+      "file": "tests/input-size-limits.test.ts > Message Size Validation > should handle multi-byte UTF-8 characters correctly",
+      "count": 1
+    },
+    {
+      "file": "tests/wizard-ttl-cleanup.test.ts > Wizard TTL Cleanup > ServerWizard > should log cleanup event",
+      "count": 1
+    }
+  ],
+  "failedFilesCount": 157,
+  "unhandledSignatures": [
+    {
+      "error": "Timeout: no se recibi├│ respuesta del usuario",
+      "count": 23
+    },
+    {
+      "error": "Message handler not registered",
+      "count": 1
+    },
+    {
+      "error": "[vitest] No \"flushLogger\" export is defined on the \"../../src/utils/logger\" mock. Did you forget to return it from \"vi.mock\"?",
+      "count": 1
+    }
+  ]
+}

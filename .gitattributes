@@ -1,0 +1,51 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Shell scripts should always use LF
+*.sh text eol=lf
+
+# Windows batch scripts should always use CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Source code
+*.ts text
+*.js text
+*.mjs text
+*.json text
+*.yml text
+*.yaml text
+*.md text
+
+# These files are text and should be normalized (convert crlf => lf)
+*.css text
+*.html text
+*.xml text
+
+# Documentation
+*.markdown text
+*.txt text
+AUTHORS text
+CHANGELOG text
+CHANGES text
+CONTRIBUTING text
+COPYING text
+copyright text
+*COPYRIGHT* text
+INSTALL text
+license text
+LICENSE text
+NEWS text
+readme text
+*README* text
+TODO text
+
+# Denote all files that are truly binary and should not be modified
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.db binary
+*.sqlite binary
+*.sqlite3 binary

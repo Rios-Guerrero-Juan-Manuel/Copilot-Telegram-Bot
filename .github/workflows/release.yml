@@ -1,0 +1,120 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  preflight-cross-platform:
+    name: Preflight (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+        env:
+          NODE_ENV: test
+
+      - name: Build
+        run: npm run build
+
+      - name: Smoke test better-sqlite3
+        run: node -e "const Database=require('better-sqlite3');const db=new Database(':memory:');db.exec('CREATE TABLE smoke(id INTEGER PRIMARY KEY, name TEXT);');db.prepare('INSERT INTO smoke(name) VALUES (?)').run('ok');const row=db.prepare('SELECT name FROM smoke WHERE id = 1').get();if(!row||row.name!=='ok') throw new Error('better-sqlite3 smoke failed');db.close();"
+
+      - name: Pack npm package
+        run: npm pack
+
+      - name: Install packed CLI globally
+        run: node -e "const fs=require('fs');const cp=require('child_process');const tgz=fs.readdirSync('.').find(f=>f.endsWith('.tgz'));if(!tgz) throw new Error('Package tarball not found');cp.execSync(`npm install -g ${tgz}`,{stdio:'inherit'});"
+
+      - name: Smoke start CLI command
+        run: |
+          node -e "const {spawn}=require('child_process');const isWin=process.platform==='win32';const cmd=isWin?'copilot-telegram-bot.cmd':'copilot-telegram-bot';const env={...process.env,TELEGRAM_BOT_TOKEN:'test-token',TELEGRAM_CHAT_ID:'1',DEFAULT_PROJECT_PATH:process.cwd(),ALLOWED_PATHS:process.cwd()};const child=spawn(cmd,[],{env,stdio:'ignore'});let settled=false;const done=(code)=>{if(settled) return;settled=true;clearTimeout(timer);if(code==='error'){process.exit(1);}process.exit(0);};const timer=setTimeout(()=>{try{child.kill();}catch{}done('timeout');},10000);child.on('error',()=>done('error'));child.on('exit',()=>done('exit'));"
+
+  release:
+    name: Create Release
+    needs: preflight-cross-platform
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: 'npm'
+        registry-url: 'https://registry.npmjs.org'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run tests
+      run: npm test
+      env:
+        NODE_ENV: test
+    
+    - name: Build
+      run: npm run build
+    
+    - name: Extract version from tag
+      id: get_version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+    
+    - name: Generate changelog
+      id: changelog
+      uses: metcalfc/changelog-generator@v4.3.1
+      with:
+        myToken: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        name: Release ${{ steps.get_version.outputs.VERSION }}
+        body: |
+          ## Changes in this release
+          
+          ${{ steps.changelog.outputs.changelog }}
+          
+          ## Installation
+          
+          ```bash
+          npm install @rios-guerrero-juan-manuel/copilot-telegram-bot@${{ steps.get_version.outputs.VERSION }}
+          ```
+          
+          ## Documentation
+          
+          - [README](https://github.com/Rios-Guerrero-Juan-Manuel/copilot-telegram-bot#readme)
+          - [Setup Guide](https://github.com/Rios-Guerrero-Juan-Manuel/copilot-telegram-bot/blob/main/SETUP.md)
+          - [Contributing](https://github.com/Rios-Guerrero-Juan-Manuel/copilot-telegram-bot/blob/main/CONTRIBUTING.md)
+        draft: false
+        prerelease: ${{ contains(steps.get_version.outputs.VERSION, '-') }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Publish to npm
+      run: npm publish --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

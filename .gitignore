@@ -1,0 +1,120 @@
+# Environment variables (NEVER commit)
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+.env.test
+
+# Local data
+data/
+logs/
+*.log
+
+# Build outputs
+dist/
+build/
+node_modules/
+*.tsbuildinfo
+
+# OS files
+Thumbs.db
+.DS_Store
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+._*
+
+# IDE configurations
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-workspace
+*.sublime-project
+.project
+.settings/
+.classpath
+
+# Coverage reports
+coverage/
+.nyc_output/
+*.lcov
+*.coverage
+htmlcov/
+
+# Test outputs
+test-output.txt
+test-results-summary.txt
+junit.xml
+test-results/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+*~.nib
+.cache/
+tmp/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependency directories
+jspm_packages/
+bower_components/
+
+# Optional npm cache
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Package manager lock files (uncomment to ignore)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Temporary documentation
+*_REPORT.md
+*_SUMMARY.md
+*_IMPLEMENTATION.md
+*_VERIFICATION.md
+*_CHECKLIST.md
+
+# Session state
+.copilot/
+
+# macOS
+.AppleDouble
+.LSOverride
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+[Tt]humbs.db
+[Tt]humbs.db:encryptable
+[Dd]esktop.ini
+
+# Linux
+.directory
+.Trash-*
+
+# npm package
+*.tgz
+
+baseline/

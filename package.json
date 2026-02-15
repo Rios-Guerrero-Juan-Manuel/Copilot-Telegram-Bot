@@ -1,0 +1,80 @@
+{
+  "name": "@rios-guerrero-juan-manuel/copilot-telegram-bot",
+  "version": "0.1.0",
+  "description": "Control GitHub Copilot CLI remotely via Telegram",
+  "private": false,
+  "type": "module",
+  "author": "Juan Manuel Ríos Guerrero <contacto@juan-manuel-rios-guerrero.es>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rios-Guerrero-Juan-Manuel/copilot-telegram-bot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Rios-Guerrero-Juan-Manuel/copilot-telegram-bot/issues"
+  },
+  "homepage": "https://github.com/Rios-Guerrero-Juan-Manuel/copilot-telegram-bot#readme",
+  "keywords": [
+    "telegram",
+    "bot",
+    "copilot",
+    "github",
+    "ai",
+    "cli",
+    "automation",
+    "mcp",
+    "model-context-protocol",
+    "github-copilot",
+    "telegram-bot",
+    "remote-control",
+    "developer-tools",
+    "typescript"
+  ],
+  "bin": {
+    "copilot-telegram-bot": "./dist/index.js"
+  },
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    ".env.example"
+  ],
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx src/index.ts",
+    "build": "tsc",
+    "lint": "eslint src/",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "vitest run tests/integration/",
+    "test:security": "vitest run tests/security-command-injection.test.ts tests/security-path-traversal.test.ts tests/security-fixes.test.ts tests/security-integration.test.ts",
+    "test:all-checks": "tsc --noEmit && npm test",
+    "test:regression": "vitest run tests/dangerous-args-detection.test.ts tests/wizard-dangerous-args-confirmation.test.ts tests/wizard-full-command-parsing.test.ts tests/wizard-parseargs-windows-paths.test.ts",
+    "test:regression:coverage": "vitest run tests/dangerous-args-detection.test.ts tests/wizard-dangerous-args-confirmation.test.ts tests/wizard-full-command-parsing.test.ts tests/wizard-parseargs-windows-paths.test.ts --coverage --coverage.thresholds.lines=0 --coverage.thresholds.functions=0 --coverage.thresholds.branches=0 --coverage.thresholds.statements=0",
+    "prepare": "npm run build",
+    "setup": "node -e \"const fs=require('fs');if(!fs.existsSync('.env'))fs.copyFileSync('.env.example','.env');console.log('.env created from .env.example')\" && npm install",
+    "prepublishOnly": "npm run build && npm run lint && npm test"
+  },
+  "dependencies": {
+    "@github/copilot-sdk": "^0.1.10",
+    "@grammyjs/runner": "^2.0.3",
+    "better-sqlite3": "^11.0.0",
+    "dotenv": "^16.0.0",
+    "grammy": "^1.25.0",
+    "winston": "^3.14.0",
+    "winston-daily-rotate-file": "^5.0.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.0",
+    "@types/node": "^22.0.0",
+    "@vitest/coverage-v8": "^2.1.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

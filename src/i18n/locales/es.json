@@ -1,0 +1,507 @@
+{
+  "common": {
+    "yes": "Sí",
+    "no": "No",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "error": "Error",
+    "success": "Éxito",
+    "warning": "Advertencia",
+    "loading": "Cargando...",
+    "none": "ninguno"
+  },
+  "commands": {
+    "start": {
+      "welcome": "✅ Copilot Telegram Bot iniciado\n\n📂 Proyecto: <code>{cwd}</code>\n🤖 Modelo: <code>{model}</code>\n\nUsa /help para ver los comandos disponibles.",
+      "status": "Estado actual:",
+      "help": "Usa /help para ver los comandos disponibles."
+    },
+    "help": {
+      "title": "🧭 <b>Comandos disponibles</b>",
+      "commands": {
+        "start": "/start - Estado inicial",
+        "help": "/help - Ayuda",
+        "status": "/status - Estado actual",
+        "pwd": "/pwd - Directorio actual",
+        "ls": "/ls - Listar archivos",
+        "cd": "/cd [ruta] - Cambiar directorio",
+        "projects": "/projects - Listar proyectos",
+        "addproject": "/addproject [alias] [ruta] - Guardar proyecto",
+        "rmproject": "/rmproject [alias] - Eliminar proyecto",
+        "switch": "/switch [alias] - Cambiar a proyecto guardado",
+        "allowpath": "/allowpath [ruta] - Agregar ruta permitida (solo admin)",
+        "plan": "/plan [tarea] - Modo plan",
+        "showplan": "/showplan - Ver plan activo",
+        "editplan": "/editplan [id] - Editar plan",
+        "exportplan": "/exportplan [id] - Exportar plan como archivo",
+        "plans": "/plans - Listar todos tus planes",
+        "exitplan": "/exitplan - Salir del modo plan",
+        "model": "/model - Cambiar modelo",
+        "mcp": "/mcp - Gestionar servidores MCP",
+        "mcp_add_sub": "/mcp add [nombre] [http|stdio] [...] - Agregar servidor MCP (directo)",
+        "mcp_remove": "/mcp remove [nombre] - Eliminar servidor MCP",
+        "mcp_enable": "/mcp enable [nombre] - Habilitar servidor MCP",
+        "mcp_disable": "/mcp disable [nombre] - Deshabilitar servidor MCP",
+        "mcp_refresh": "/mcp refresh - Recargar configuración MCP",
+        "mcp_add": "/mcp_add - Agregar servidor MCP (wizard)",
+        "mcp_list": "/mcp_list [página] - Listar servidores MCP",
+        "mcp_delete": "/mcp_delete [nombre] - Eliminar servidor MCP",
+        "logs": "/logs [líneas] - Ver últimas líneas de logs (solo owner)",
+        "stop": "/stop - Interrumpir operación en curso",
+        "extend": "/extend - Extender timeout de operación en curso",
+        "new_chat": "/new_chat - Crear chat limpio",
+        "reset": "/reset - Alias de /new_chat",
+        "language": "/language - Cambiar idioma del bot"
+      }
+    },
+    "status": {
+      "title": "🔄 <b>Estado del Bot</b>",
+      "operationInProgress": "⏳ Operación en curso: <b>Sí</b>",
+      "noOperation": "✅ Operación en curso: <b>No</b>",
+      "elapsedTime": "⏱️ Tiempo transcurrido: <b>{time}</b>",
+      "currentProject": "📂 Proyecto actual: <code>{cwd}</code>",
+      "model": "🤖 Modelo: <code>{model}</code>",
+      "mcpServers": "🧩 MCP: {servers}",
+      "mcpNone": "ninguno",
+      "activeSessions": "📊 Sesiones activas: <b>{count}</b>",
+      "sessionInfo": "  • <code>{path}</code> ({status}, creada hace {time})",
+      "sessionActive": "🟢 activa",
+      "sessionInactive": "⚪ inactiva"
+    },
+    "logs": {
+      "noPermission": "⛔ No tienes permiso para ver logs.",
+      "error": "❌ Error leyendo logs",
+      "title": "📋 Últimas {lines} líneas:\n\n<code>{content}</code>"
+    },
+    "language": {
+      "current": "Idioma actual: {lang}",
+      "select": "🌐 Selecciona tu idioma:",
+      "changed": "✅ Idioma cambiado a {lang}"
+    },
+    "plans": {
+      "showplan": {
+        "noPlanActive": "❌ <b>No hay plan activo</b>\n\nUsa /plan para crear un plan primero.",
+        "notFound": "❌ <b>Plan no encontrado</b>\n\nEl plan puede haber sido eliminado.",
+        "created": "📅 Creado:",
+        "status": "📊 Estado:",
+        "project": "📁 Proyecto:",
+        "errorDisplaying": "❌ <b>Error al mostrar el plan</b>\n\nDetalles: {error}"
+      },
+      "editplan": {
+        "noPlan": "❌ <b>No hay plan para editar</b>\n\nUso: /editplan [planId]\nSin argumento, edita el plan activo actual.\nCon argumento, edita el plan con ese ID.",
+        "notFound": "❌ <b>Plan no encontrado</b>\n\nNo existe un plan con ID {planId}.",
+        "accessDenied": "❌ <b>Acceso denegado</b>\n\nNo tienes permiso para editar este plan.",
+        "instructions": "📝 <b>Editar Plan: {title}</b>\n\n1️⃣ Descarga este archivo\n2️⃣ Edítalo en tu editor favorito\n3️⃣ Reenvía el archivo modificado a este chat\n\n<i>El plan será actualizado cuando envíes el archivo.</i>",
+        "invalidFormat": "⚠️ <b>Formato incorrecto</b>\n\nPor favor envía un archivo .md (Markdown).",
+        "fileTooLarge": "⚠️ <b>Archivo demasiado grande</b>\n\nEl archivo debe ser menor a 10MB.",
+        "emptyFile": "⚠️ <b>Archivo vacío</b>\n\nEl archivo no puede estar vacío.",
+        "updateError": "❌ <b>Error al actualizar plan</b>\n\nNo se pudo guardar el plan. Puede que haya sido eliminado.",
+        "updated": "✅ <b>Plan actualizado exitosamente</b>\n\nLos cambios han sido guardados.",
+        "errorProcessing": "❌ <b>Error al procesar archivo</b>\n\nDetalles: {error}",
+        "errorPreparing": "❌ <b>Error al preparar plan para edición</b>\n\nDetalles: {error}"
+      },
+      "exportplan": {
+        "noPlan": "❌ <b>No hay plan para exportar</b>\n\nUso: /exportplan [planId]\nSin argumento, exporta el plan activo actual.\nCon argumento, exporta el plan con ese ID.",
+        "notFound": "❌ <b>Plan no encontrado</b>\n\nNo existe un plan con ID {planId}.",
+        "accessDenied": "❌ <b>Acceso denegado</b>\n\nNo tienes permiso para exportar este plan.",
+        "caption": "📄 Plan exportado: {title}",
+        "error": "❌ <b>Error al exportar el plan</b>\n\nDetalles: {error}"
+      },
+      "plans": {
+        "noPlans": "📋 <b>No tienes planes guardados</b>\n\nUsa /plan para crear tu primer plan.",
+        "title": "📋 <b>Tus Planes</b> ({count})",
+        "hint": "\n💡 <i>Usa /showplan para ver el plan activo</i>\n<i>Usa /exportplan [id] para exportar un plan</i>",
+        "error": "❌ <b>Error al listar planes</b>\n\nDetalles: {error}"
+      },
+      "exitplan": {
+        "exited": "✅ <b>Plan Mode Desactivado</b>\n\nHas vuelto al modo normal y se conservó el contexto de la conversación.",
+        "exitedWithSaved": "\n\n💾 El plan ha sido guardado en la base de datos.\nUsa /showplan para verlo nuevamente."
+      },
+      "statusLabels": {
+        "draft": "borrador",
+        "approved": "aprobado",
+        "in_progress": "en progreso",
+        "completed": "completado",
+        "cancelled": "cancelado",
+        "interrupted": "interrumpido"
+      }
+    }
+  },
+  "errors": {
+    "generic": "❌ Ocurrió un error. Por favor, inténtalo de nuevo.",
+    "notAuthorized": "❌ No estás autorizado para usar este bot.",
+    "operationInProgress": "⚠️ Ya hay una operación en progreso. Por favor, espera a que se complete.",
+    "invalidInput": "❌ Entrada inválida. Por favor, inténtalo de nuevo.",
+    "pathNotAllowed": "❌ La ruta no está en la lista de permitidas.",
+    "sessionNotFound": "❌ Sesión no encontrada.",
+    "timeout": "⏱️ La operación ha excedido el tiempo límite.",
+    "networkError": "❌ Error de red. Reintentando...",
+    "directoryNotExist": "❌ El directorio actual no existe.",
+    "pathNotAllowedByConfig": "❌ Ruta no permitida por ALLOWED_PATHS.",
+    "invalidPathOrNotDirectory": "❌ Ruta inválida o no es un directorio.",
+    "setupRequired": "⚠️ Debes configurar los directorios permitidos primero. Usa /start",
+    "mcpServerNotFound": "❌ MCP server no encontrado.",
+    "specifyServerName": "❌ Debes especificar el nombre del servidor.\n\nUso: /mcp_delete [nombre]",
+    "configUpdated": "✅ Configuración actualizada. El nuevo servidor está disponible.",
+    "notInPlanMode": "ℹ️ No estás en modo plan.",
+    "noActiveSession": "ℹ️ No hay sesión activa para crear un chat nuevo",
+    "sessionReset": "✅ Chat nuevo creado. Estado limpio.",
+    "pathNotAllowedShort": "El directorio actual no está en la lista de rutas permitidas.\n",
+    "pathNotAllowedDetailed": "El directorio actual no está en la lista de rutas permitidas.\n\nPosibles causas:\n• El administrador ha modificado la configuración de seguridad\n• El directorio fue removido de la lista permitida\n\nPor favor, contacta al administrador del bot o usa /cd para cambiar a un directorio permitido."
+  },
+  "wizards": {
+    "cd": {
+      "title": "📁 Navegar Directorios",
+      "selectDirectory": "Selecciona un directorio para navegar:",
+      "currentPath": "Ruta actual:",
+      "confirm": "✅ Confirmar este directorio",
+      "cancelled": "❌ Navegación cancelada.",
+      "success": "✅ Directorio cambiado a: {path}",
+      "timeout": "❌ La sesión expiró por inactividad. Por favor, comienza de nuevo con /cd.",
+      "alreadyActive": "Ya tienes un wizard en curso. Usa \"Cancelar\" para cancelarlo primero.",
+      "errorReading": "❌ Error al leer directorio: {error}",
+      "noActiveWizard": "No hay wizard activo. Usa /cd para iniciar uno.",
+      "errorValidating": "❌ Error al validar ruta.",
+      "invalidPage": "Página inválida.",
+      "directorySelected": "✅ Directorio seleccionado: <code>{path}</code>",
+      "navigationTitle": "📂 <b>Navegación de Directorios</b>",
+      "noSubdirectories": "📭 <i>No hay subdirectorios en esta ubicación</i>"
+    },
+    "addProject": {
+      "title": "💾 Añadir Proyecto",
+      "enterName": "📝 Ingresa el nombre del proyecto (solo letras, números, guiones y guiones bajos):",
+      "selectPath": "📂 Selecciona el directorio del proyecto:",
+      "summary": "📋 Resumen del Proyecto:\n\n<b>Nombre:</b> {name}\n<b>Ruta:</b> {path}\n\n¿Deseas guardar este proyecto?",
+      "saved": "✅ ¡Proyecto '{name}' guardado exitosamente!",
+      "cancelled": "❌ Creación de proyecto cancelada.",
+      "alreadyExists": "❌ Ya existe un proyecto con el nombre '{name}'.",
+      "alreadyActive": "Ya tienes un wizard en curso. Usa \"Cancelar\" para cancelarlo primero.",
+      "nameEmpty": "❌ El nombre del proyecto no puede estar vacío.",
+      "invalidCharacters": "❌ El nombre del proyecto contiene caracteres especiales no permitidos. Usa solo letras, números, espacios, guiones y guiones bajos.",
+      "nameAlreadyExists": "❌ Ya existe un proyecto con el nombre \"<b>{name}</b>\".",
+      "errorReading": "❌ Error al leer directorio: {error}",
+      "errorValidating": "❌ Error al validar ruta.",
+      "noActiveWizard": "No hay wizard activo. Usa /addproject para iniciar uno.",
+      "invalidPage": "Página inválida.",
+      "errorMissingName": "❌ Error: nombre de proyecto no definido.",
+      "pathNotAllowedConfirm": "❌ Ruta no permitida. No se puede guardar el proyecto en esta ubicación.",
+      "projectSaved": "✅ Proyecto guardado: <b>{name}</b>\n📁 Ruta: <code>{path}</code>",
+      "step1Title": "📝 <b>Nuevo Proyecto - Paso 1/3</b>\n\nPor favor, envía el <b>nombre</b> del proyecto.\n\n<i>El nombre puede contener letras, números, espacios, guiones y guiones bajos.</i>\n\nEjemplos: <code>MiProyecto</code>, <code>My Project</code>, <code>proyecto_2024</code>",
+      "step2Title": "📂 <b>Nuevo Proyecto - Paso 2/3</b>\n\n🏷️ Nombre: <b>{name}</b>",
+      "step3Title": "📋 <b>Nuevo Proyecto - Paso 3/3: Confirmación</b>\n\n🏷️ <b>Nombre:</b> {name}\n📁 <b>Ruta:</b> <code>{path}</code>\n\n¿Confirmas que deseas guardar este proyecto?",
+      "pathNotAllowedStart": "❌ Ruta actual no permitida. El directorio de trabajo debe estar en las rutas permitidas."
+    },
+    "mcp": {
+      "title": "🔌 Añadir Servidor MCP",
+      "enterName": "📝 Ingresa el nombre del servidor (solo letras, números, guiones y guiones bajos):",
+      "selectType": "🔧 Selecciona el tipo de servidor:\n1️⃣ STDIO (comando local)\n2️⃣ HTTP (servidor remoto)",
+      "enterCommand": "⚙️ Ingresa el comando a ejecutar (ej: node, python, npx):",
+      "enterArgs": "📋 Ingresa los argumentos del comando (deja vacío si no hay):\nEjemplo: server.js --port 3000",
+      "enterUrl": "🌐 Ingresa la URL del servidor (debe comenzar con http:// o https://):",
+      "enterEnv": "🌍 Ingresa variables de entorno (formato: CLAVE=VALOR,CLAVE2=VALOR2) o \"-\" para omitir:",
+      "summary": "✅ Confirma la configuración:\n\n📌 <b>Nombre:</b> {name}\n📌 <b>Tipo:</b> {type}\n{details}\n\n¿Deseas crear este servidor? (sí/no):",
+      "created": "✅ ¡Servidor \"{name}\" creado exitosamente!\n✅ Configuración actualizada. El nuevo servidor está disponible.",
+      "cancelled": "❌ Creación de servidor cancelada.",
+      "invalidName": "❌ Nombre inválido. Usa solo letras, números, guiones y guiones bajos.",
+      "invalidUrl": "❌ URL inválida. Debe comenzar con http:// o https://"
+    }
+  },
+  "mcp": {
+    "list": {
+      "title": "📋 Servidores MCP (Página {page}/{total})",
+      "empty": "No hay servidores MCP configurados.",
+      "page": "💡 Usa /mcp_list {page} para ver la siguiente página",
+      "emptyWithHelp": "📋 No hay servidores MCP configurados.\n\nUsa /mcp_add para agregar uno."
+    },
+    "delete": {
+      "success": "✅ Servidor \"{name}\" eliminado exitosamente.",
+      "notFound": "❌ Servidor \"{name}\" no encontrado."
+    },
+    "types": {
+      "stdio": "STDIO",
+      "http": "HTTP"
+    },
+    "commands": {
+      "usage": {
+        "add": "Uso: /mcp add [nombre] [http|stdio] [url|comando] [args...]",
+        "remove": "Uso: /mcp remove [nombre]",
+        "enable": "Uso: /mcp {sub} [nombre]"
+      },
+      "invalidType": "Tipo inválido. Usa http o stdio.",
+      "configReloaded": "✅ MCP config recargada.",
+      "commandNotRecognized": "Comando MCP no reconocido."
+    }
+  },
+  "projects": {
+    "list": {
+      "title": "📁 Proyectos Guardados",
+      "empty": "No hay proyectos guardados.\n\nUsa /addproject para guardar un proyecto.",
+      "noProjects": "No hay proyectos guardados."
+    },
+    "add": {
+      "success": "✅ ¡Proyecto '{name}' guardado exitosamente!",
+      "alreadyExists": "❌ El proyecto '{name}' ya existe.",
+      "usage": "Uso: /addproject [alias] [ruta]\nO usa /addproject sin argumentos para el wizard interactivo.",
+      "saved": "✅ Proyecto guardado: <b>{name}</b>"
+    },
+    "remove": {
+      "success": "✅ Proyecto '{name}' eliminado exitosamente.",
+      "notFound": "❌ Proyecto '{name}' no encontrado.",
+      "usage": "Uso: /rmproject [alias]",
+      "removed": "✅ Proyecto eliminado.",
+      "notFoundShort": "❌ Proyecto no encontrado."
+    },
+    "switch": {
+      "success": "✅ Cambiado al proyecto '{name}' en: {path}",
+      "notFound": "❌ Proyecto '{name}' no encontrado.",
+      "usage": "Uso: /switch [alias]",
+      "switched": "✅ Cambiado a <code>{path}</code>",
+      "planModeDeactivated": "\n\n⚠️ El modo plan se ha desactivado (los planes son específicos de cada proyecto)."
+    }
+  },
+  "navigation": {
+    "pwd": "📍 Directorio actual:\n<code>{path}</code>",
+    "ls": {
+      "title": "📂 Archivos y directorios en:\n<code>{path}</code>\n\n{items}",
+      "empty": "📭 El directorio está vacío.",
+      "emptyDirectory": "📭 Directorio vacío"
+    },
+    "cd": {
+      "success": "✅ Directorio cambiado a:\n<code>{path}</code>",
+      "invalidPath": "❌ Ruta inválida o no permitida.",
+      "changed": "✅ Directorio cambiado a <code>{path}</code>",
+      "planModeDeactivated": "\n\n⚠️ El modo plan se ha desactivado (los planes son específicos de cada proyecto).",
+      "errorStartingWizard": "❌ Error al iniciar el navegador: {error}"
+    }
+  },
+  "session": {
+    "stop": {
+      "success": "✅ Operación actual detenida.",
+      "noOperation": "No hay ninguna operación en progreso."
+    },
+    "reset": {
+      "success": "✅ Sesión reiniciada exitosamente.",
+      "noSession": "No hay sesión activa."
+    },
+    "extend": {
+      "success": "✅ Tiempo límite extendido {minutes} minutos.",
+      "noOperation": "No hay ninguna operación en progreso.",
+      "maxReached": "⚠️ Se alcanzó la duración máxima del tiempo límite. No se puede extender más."
+    },
+    "timeout": {
+      "yesExtend": "✅ Sí, extender",
+      "noCancel": "❌ No, cancelar",
+      "invalidRequest": "Solicitud inválida",
+      "extending": "Extendiendo tiempo...",
+      "cancelling": "Cancelando operación..."
+    }
+  },
+  "plan": {
+    "enter": "📋 Modo plan activado. Copilot pedirá aprobación antes de ejecutar tareas.",
+    "exit": "✅ Modo plan desactivado.",
+    "active": "📋 El modo plan está activo. Usa /exitplan para desactivarlo.",
+    "activated": "🎯 <b>Plan Mode Activado</b>\n\nAhora puedes hacer preguntas sobre el plan o pedir su implementación.\nLa conversación mantendrá el contexto del plan.\n\nPara salir del modo plan: /exitplan"
+  },
+  "copilot": {
+    "thinking": "🤔 Pensando...",
+    "generating": "✨ Generando respuesta...",
+    "streaming": "📝 Transmitiendo...",
+    "complete": "✅ Completo",
+    "stopped": "⏹️ Detenido por el usuario",
+    "cliNotAvailable": "Copilot CLI no disponible. Asegúrate de que está instalado (npm i -g @github/copilot) y autenticado (ejecutar copilot y /login).",
+    "timeout": "Timeout: no se recibió respuesta del usuario"
+  },
+  "bot": {
+    "stop": {
+      "noSession": "No hay sesión activa.",
+      "noOperation": "No hay operación en curso.",
+      "cancelled": "🛑 Operación cancelada y sesión detenida.",
+      "stopped": "🛑 Sesión detenida.",
+      "errorStopping": "⚠️ Error al detener: {error}"
+    },
+    "extend": {
+      "noOperation": "ℹ️ No hay operación en curso para extender",
+      "maxReached": "⚠️ Límite máximo de 2 horas alcanzado. No se puede extender más.",
+      "errorExtending": "❌ No se pudo extender el timeout. Intenta de nuevo.",
+      "extended": "✅ Timeout extendido en {minutes} minutos\n\n⏱️ Tiempo transcurrido: {elapsed}\n⏰ Nuevo límite: {limit} minutos",
+      "errorExtendingFailed": "❌ Error al extender timeout: {error}",
+      "extensionSuccess": "✅ Tiempo extendido +{minutes}min",
+      "errorExtensionWarning": "⚠️ Error al extender tiempo. La operación será cancelada.",
+      "autoDetected": "⏱️ Tarea compleja detectada, tiempo extendido +{minutes}min"
+    },
+    "working": "🔄 Trabajando...",
+    "done": "✅ Listo.",
+    "completed": "✅ Completado",
+    "errorWithDetails": "❌ Error: {error}",
+    "operationCancelled": "Operación cancelada.",
+    "waitPlease": "⏳ Espera un momento mientras actualizo la configuración...",
+    "serverCreatedWithError": "⚠️ Servidor creado pero hubo un error al actualizar la sesión: {error}",
+    "operationInProgressWait": "⏳ Ya hay una operación en curso. Espera un momento.",
+    "requestExpired": "Solicitud expirada",
+    "responseReceived": "Respuesta recibida",
+    "optionExpired": "⏰ Esta opción ha expirado. Por favor usa el comando {command} nuevamente.",
+    "invalidModel": "Modelo inválido",
+    "modelChanged": "Modelo: {model}",
+    "errorChangingModel": "Error al cambiar modelo",
+    "errorChangingProject": "Error al cambiar proyecto",
+    "errorUpdatingMCP": "Error al actualizar MCP",
+    "errorUserNotIdentified": "Error: Usuario no identificado",
+    "errorNavigating": "Error al navegar",
+    "errorChangingPage": "Error al cambiar página",
+    "errorConfirming": "Error al confirmar",
+    "errorCancelling": "Error al cancelar",
+    "errorShowingConfirmation": "Error al mostrar confirmación",
+    "errorSavingProject": "Error al guardar proyecto",
+    "rateLimitExceeded": "⏱️ Demasiadas solicitudes. Espera 1 segundo antes de enviar otro mensaje.",
+    "pageNotExist": "❌ Página {page} no existe. Total de páginas: {total}",
+    "serverDeletedSuccess": "✅ Servidor \"{name}\" eliminado exitosamente.",
+    "mcpAdded": "✅ MCP agregado: <b>{name}</b>",
+    "mcpToggled": "✅ MCP {action}d: <b>{name}</b>"
+  },
+  "callbacks": {
+    "requestExpired": "Solicitud expirada",
+    "responseReceived": "Respuesta recibida",
+    "optionSelected": "Opción elegida",
+    "optionExpiredModel": "⏰ Esta opción ha expirado. Por favor usa el comando /model nuevamente.",
+    "optionExpiredSwitch": "⏰ Esta opción ha expirado. Por favor usa el comando /switch nuevamente.",
+    "optionExpiredMcp": "⏰ Esta opción ha expirado. Por favor usa el comando /mcp nuevamente.",
+    "optionExpiredCd": "⏰ Esta opción ha expirado. Por favor usa /cd nuevamente.",
+    "optionExpiredAddProject": "⏰ Esta opción ha expirado. Por favor usa /addproject nuevamente.",
+    "operationInProgress": "Operación en curso",
+    "directoryChanged": "Directorio cambiado",
+    "cancelled": "Cancelado",
+    "confirmation": "Confirmación",
+    "projectSaved": "Proyecto guardado",
+    "error": "❌ Error",
+    "modelChangedMessage": "✅ Modelo cambiado a <b>{model}</b>",
+    "projectSwitchedAck": "{name}",
+    "mcpToggledAck": "MCP {action}: {name}"
+  },
+  "messageHandler": {
+    "planModeUsage": "Uso: /plan [tarea]",
+    "operationInProgress": "⏳ Ya hay una operación en curso. Espera un momento.",
+    "planError": "❌ Error en modo plan: {error}",
+    "exitPlanError": "❌ Error al salir del modo plan: {error}",
+    "resetError": "❌ Error al reiniciar: {error}",
+    "progressMessage": "🔄 Trabajando... (~{bufferSize} caracteres, {seconds}s)",
+    "progressMessageWithRemaining": "🔄 Trabajando... (~{bufferSize} caracteres, {seconds}s) | {remainingMinutes}m restantes",
+    "heartbeatNoExtensions": "⏳ La tarea sigue en progreso ({formattedTime}). Tiempo restante: {remainingMinutes}m. /stop para cancelar",
+    "heartbeatWithExtensions": "⏳ La tarea sigue en progreso ({formattedTime}). Tiempo restante: {remainingMinutes}m. ⏱️ Extendido {totalExtensions}x. /stop para cancelar",
+    "completionFooter": "\n\n⏱️ <i>Completado en {duration}</i>",
+    "completionFooterWithExtensions": "\n\n⏱️ <i>Completado en {duration} | Extensiones: {count}</i>",
+    "errorWithDetails": "❌ {error}"
+  },
+  "allowlistSetup": {
+    "title": "🔒 <b>Configuración de Seguridad</b>",
+    "noDirectories": "⚠️ No hay directorios permitidos configurados.",
+    "explanation": "Por seguridad, el bot necesita saber a qué directorios puede acceder.",
+    "instructions": "<b>Envía los directorios permitidos separados por coma:</b>\nEjemplo: <code>C:\\Users\\Tu\\Proyectos, D:\\Code</code>",
+    "tip": "💡 <i>Tip: Solo tendrás que hacer esto una vez.</i>",
+    "noValidPaths": "❌ <b>Ningún path válido encontrado</b>",
+    "tryAgain": "\n\nIntenta de nuevo con paths válidos.",
+    "warningsTitle": "⚠️ <b>Algunos paths no son válidos y serán ignorados:</b>",
+    "confirmationTitle": "✅ <b>Paths a agregar:</b>",
+    "confirmationQuestion": "\n\n<b>¿Confirmas guardar estos paths?</b>\n\nResponde con <code>sí</code> o <code>no</code>.",
+    "cancelled": "❌ Configuración cancelada. El bot se cerrará ahora.",
+    "saved": "✅ <b>¡Configuración guardada exitosamente!</b>",
+    "pathsTitle": "Directorios permitidos:",
+    "restarting": "🔄 El bot se reiniciará para aplicar los cambios...",
+    "editHint": "💡 <i>Puedes modificar estos paths editando ALLOWED_PATHS en el archivo .env</i>",
+    "invalidResponse": "❌ Respuesta inválida. Responde con <code>sí</code> o <code>no</code>.",
+    "timeout": "⏰ La sesión expiró por inactividad. El bot se cerrará ahora.",
+    "timeoutMessage": "⏰ Timeout de configuración. El bot se cerrará ahora.",
+    "updateError": "❌ Error al actualizar configuración: {error}",
+    "saveError": "❌ <b>Error al guardar configuración</b>",
+    "manualEdit": "Intenta de nuevo o configura ALLOWED_PATHS manualmente en .env",
+    "closingBot": "Cerrando bot por configuración incompleta...",
+    "appliedWithoutRestart": "✅ Allowlist aplicado sin reinicio."
+  },
+  "allowlistAdmin": {
+    "usage": "Uso: /allowpath [ruta]",
+    "promptAddPath": "⚠️ La ruta <code>{path}</code> no está permitida.\n\n¿Querés agregarla a ALLOWED_PATHS?",
+    "buttonAddPath": "✅ Agregar ruta",
+    "cancelled": "❌ Operación cancelada.",
+    "invalidPath": "❌ La ruta <code>{path}</code> no existe.",
+    "notDirectory": "❌ La ruta <code>{path}</code> no es un directorio.",
+    "alreadyAllowed": "ℹ️ La ruta <code>{path}</code> ya está en ALLOWED_PATHS.",
+    "added": "✅ Ruta agregada a ALLOWED_PATHS:\n<code>{path}</code>",
+    "restartingNotice": "🔄 El bot se reiniciará para aplicar los cambios.",
+    "appliedWithoutRestart": "✅ Allowlist actualizado sin reinicio."
+  },
+  "pathSetup": {
+    "errorValidating": "Error al validar path: {error}",
+    "notAbsolute": "El path no es absoluto",
+    "notExists": "El path no existe",
+    "notDirectory": "El path no es un directorio"
+  },
+  "mcpWizard": {
+    "alreadyActive": "Ya tienes un wizard en curso. Usa \"cancelar\" para cancelarlo primero.",
+    "noActiveSession": "No hay una sesión activa. Usa /mcp_add para iniciar.",
+    "sessionExpired": "La sesión ha expirado por inactividad. Por favor, inicia de nuevo con /mcp_add.",
+    "enterName": "📝 Ingresa el nombre del servidor (solo letras, números, guiones y guiones bajos):",
+    "selectType": "🔧 Selecciona el tipo de servidor:\n1️⃣ STDIO (comando local)\n2️⃣ HTTP (servidor remoto)",
+    "typeStdio": "STDIO (comando local)",
+    "typeHttp": "HTTP (servidor remoto)",
+    "enterCommand": "⚙️ Ingresa el comando a ejecutar (ej: node, python, npx):",
+    "enterUrl": "🌐 Ingresa la URL del servidor (debe empezar con http:// o https://):",
+    "enterArgs": "📋 Ingresa los argumentos del comando (deja vacío si no hay):\nEjemplo: server.js --port 3000",
+    "enterEnv": "🌍 Ingresa variables de entorno (formato: KEY=VALUE,KEY2=VALUE2) o \"-\" para omitir:",
+    "envParseHelp": "Formato esperado:\n- Simple: KEY=value,KEY2=value2\n- Con comillas: KEY=\"value,with,commas\"\n- Con escape: KEY=value\\,escaped\n\nPor favor, intenta de nuevo o envía '-' para omitir.",
+    "confirmSummary": "✅ Confirma la configuración:\n\n📌 <b>Nombre:</b> {name}\n📌 <b>Tipo:</b> {type}\n{details}\n\n¿Deseas crear este servidor? (si/no):",
+    "detailsStdio": "📌 <b>Comando:</b> <code>{command}</code>\n📌 <b>Args:</b> {args}\n📌 <b>Env:</b> {env}",
+    "detailsHttp": "📌 <b>URL:</b> <code>{url}</code>",
+    "created": "✅ Servidor \"{name}\" creado exitosamente!",
+    "cancelled": "❌ Creación de servidor cancelada.",
+    "invalidState": "Estado inválido del wizard.",
+    "nameEmpty": "❌ El nombre no puede estar vacío.",
+    "invalidName": "❌ El nombre solo puede contener letras, números, guiones y guiones bajos.",
+    "nameAlreadyExists": "❌ Ya existe un servidor con el nombre \"{name}\".\n\nIntenta otro nombre:",
+    "invalidType": "❌ Tipo inválido.",
+    "commandEmpty": "❌ El comando no puede estar vacío.",
+    "urlEmpty": "❌ La URL no puede estar vacía.",
+    "invalidUrl": "❌ URL inválida.",
+    "envParseError": "❌ Error al parsear variables de entorno:\n\n{error}\n\nIntenta de nuevo o envía <code>-</code> para omitir.",
+    "confirmDangerous": "⚠️ <b>ADVERTENCIA DE SEGURIDAD</b>\n\nEl comando contiene argumentos peligrosos: {flags}\n\nComando completo: `{command}`\n\n{warning}\n\n¿Entiendes el riesgo y deseas continuar?\n\nResponde:\n\"confirmar\" - Para agregar el servidor (bajo tu responsabilidad)\n\"cancelar\" - Para cancelar la operación",
+    "confirmDangerousInvalid": "⚠️ Respuesta inválida. Responde:\n\"confirmar\" - Para confirmar y agregar el servidor\n\"cancelar\" - Para cancelar la operación",
+    "invalidConfirmation": "❌ Respuesta inválida.",
+    "errorCreatingServer": "❌ Error al crear servidor: {error}",
+    "operationCancelled": "❌ Operación cancelada por el usuario.",
+    "cancelKeywords": "Escribe \"cancelar\" para cancelar la operación",
+    "noActiveWizard": "No hay wizard activo."
+  },
+  "envParser": {
+    "errorParsing": "Error al parsear variables de entorno: {error}",
+    "unknownError": "Error desconocido al parsear variables de entorno"
+  },
+  "serverManagement": {
+    "securityWarning": "⚠️ <b>ADVERTENCIA DE SEGURIDAD</b>\n\nEl comando contiene flags que podrían permitir ejecución de código arbitrario o riesgos de seguridad.",
+    "flagExplanations": {
+      "eval": "--eval / -e: Permite ejecución de código arbitrario",
+      "allowUnsafe": "--allow-unsafe: Desactiva protecciones de seguridad",
+      "exec": "--exec: Puede ejecutar comandos del sistema",
+      "import": "--import: Puede cargar módulos arbitrarios",
+      "unsafeInline": "--unsafe-inline: Permite ejecución de código inline",
+      "-e": "Ejecuta código JavaScript/Perl/Ruby directamente",
+      "--eval": "Ejecuta código JavaScript directamente",
+      "-c": "Ejecuta comandos de shell o código Python directamente",
+      "--code": "Ejecuta código directamente",
+      "-p": "Evalúa e imprime código",
+      "--print": "Evalúa e imprime código",
+      "--interactive": "Modo interactivo que permite ejecución de comandos",
+      "-i": "Modo interactivo"
+    },
+    "securityRecommendation": "Solo continúa si confías en el origen de este comando y entiendes las implicaciones de seguridad.",
+    "dangerousArguments": "Argumentos peligrosos detectados: {flags}",
+    "validation": {
+      "commandEmpty": "El comando no puede estar vacío",
+      "urlEmpty": "La URL no puede estar vacía",
+      "nameEmpty": "El nombre del servidor no puede estar vacío",
+      "nameInvalid": "El nombre solo puede contener letras, números, guiones y guiones bajos",
+      "urlInvalid": "URL inválida",
+      "codeExecution": "ejecución de código"
+    }
+  }
+}
