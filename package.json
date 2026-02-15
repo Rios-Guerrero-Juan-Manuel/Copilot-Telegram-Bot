@@ -44,7 +44,7 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "start": "tsx src/index.ts",
-    "build": "tsc && tsc-alias -f -fe .js",
+    "build": "tsc && tsc-alias -f -fe .js && node -e \"require('fs').cpSync('src/i18n/locales','dist/i18n/locales',{recursive:true})\"",
     "lint": "eslint src/",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
