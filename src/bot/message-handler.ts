@@ -464,6 +464,7 @@ async function sendPromptWithStreaming(
     let isFinished = false;
     let isCancelled = false;
     let lastProgressUpdate: Promise<any> | null = null;
+    let lastProgressMessage: string | null = null;
     let lastEventTime = Date.now();
     let heartbeatTimer: NodeJS.Timeout | null = null;
     let isAwaitingConfirmation = false;
@@ -691,6 +692,8 @@ async function sendPromptWithStreaming(
           undefined,
           activeToolName ?? undefined
         );
+        if (progressMessage === lastProgressMessage) return;
+        lastProgressMessage = progressMessage;
 
         const currentUpdate = bot.api
           .editMessageText(chatId, msgId, progressMessage, { parse_mode: 'HTML' })
