@@ -1,6 +1,6 @@
 {
   "name": "@juan-manuel-rios-guerrero/copilot-telegram-bot",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Control GitHub Copilot CLI remotely via Telegram",
   "private": false,
   "type": "module",
