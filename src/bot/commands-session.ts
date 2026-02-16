@@ -15,6 +15,7 @@ import { savePlanToDatabase } from '../utils/plan-utils';
 import { DatabaseManager } from '../state/database';
 import { createAllowPathRequest, isAdminUser } from './allowlist-admin';
 import { escapeHtml } from '../utils/formatter';
+import { getAvailableModelIds, getModelButtonLabel } from './model-catalog';
 
 /**
  * Registers session management commands
@@ -44,28 +45,14 @@ export function registerSessionCommands(
   bot.command('model', async (ctx) => {
     const telegramId = String(ctx.from?.id ?? '');
     const user = userState.getOrCreate(telegramId, ctx.from?.username);
+    const modelIds = await getAvailableModelIds(sessionManager);
+
     await ctx.reply(i18n.t(user.id, 'commands.help.commands.model'), {
       reply_markup: {
-        inline_keyboard: [
-          // Claude models
-          [{ text: '🟣 Claude Sonnet 4.5', callback_data: generateCallbackData('model', 'claude-sonnet-4.5') }],
-          [{ text: '🟣 Claude Haiku 4.5 (fast)', callback_data: generateCallbackData('model', 'claude-haiku-4.5') }],
-          [{ text: '🟣 Claude Opus 4.6 (premium)', callback_data: generateCallbackData('model', 'claude-opus-4.6') }],
-          [{ text: '🟣 Claude Opus 4.5 (premium)', callback_data: generateCallbackData('model', 'claude-opus-4.5') }],
-          [{ text: '🟣 Claude Sonnet 4', callback_data: generateCallbackData('model', 'claude-sonnet-4') }],
-          // GPT-5 family
-          [{ text: '🟢 GPT-5', callback_data: generateCallbackData('model', 'gpt-5') }],
-          [{ text: '🟢 GPT-5 mini (fast)', callback_data: generateCallbackData('model', 'gpt-5-mini') }],
-          [{ text: '🟢 GPT-5.1', callback_data: generateCallbackData('model', 'gpt-5.1') }],
-          [{ text: '🟢 GPT-5.1-Codex', callback_data: generateCallbackData('model', 'gpt-5.1-codex') }],
-          [{ text: '🟢 GPT-5.1-Codex-Mini (fast)', callback_data: generateCallbackData('model', 'gpt-5.1-codex-mini') }],
-          [{ text: '🟢 GPT-5.1-Codex-Max', callback_data: generateCallbackData('model', 'gpt-5.1-codex-max') }],
-          [{ text: '🟢 GPT-5.2', callback_data: generateCallbackData('model', 'gpt-5.2') }],
-          [{ text: '🟢 GPT-5.2-Codex', callback_data: generateCallbackData('model', 'gpt-5.2-codex') }],
-          [{ text: '🟢 GPT-4.1 (fast)', callback_data: generateCallbackData('model', 'gpt-4.1') }],
-          // Other models
-          [{ text: '🔵 Gemini 3 Pro (Preview)', callback_data: generateCallbackData('model', 'gemini-3-pro-preview') }],
-        ],
+        inline_keyboard: modelIds.map((modelId) => [{
+          text: getModelButtonLabel(modelId),
+          callback_data: generateCallbackData('model', modelId),
+        }]),
       },
     });
   });

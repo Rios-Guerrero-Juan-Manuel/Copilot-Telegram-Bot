@@ -351,6 +351,25 @@ export class SessionManager {
   }
 
   /**
+   * Lists model IDs currently available in Copilot CLI.
+   *
+   * Returns an empty list when the catalog cannot be fetched.
+   */
+  async listAvailableModels(): Promise<string[]> {
+    try {
+      const models = await this.client.listModels();
+      return models
+        .map((model) => model.id)
+        .filter((modelId): modelId is string => typeof modelId === 'string' && modelId.length > 0);
+    } catch (error: any) {
+      logger.warn('Failed to list available models from Copilot SDK', {
+        error: error instanceof Error ? error.message : String(error),
+      });
+      return [];
+    }
+  }
+
+  /**
    * Registers an aborter function for cancelling operations
    * @param userId - User identifier
    * @param aborter - Function to call when aborting the operation

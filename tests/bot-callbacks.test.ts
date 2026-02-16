@@ -67,6 +67,7 @@ describe('Bot Callbacks', () => {
       setBusy: vi.fn(),
       recreateActiveSession: vi.fn(async () => {}),
       switchProject: vi.fn(async () => {}),
+      listAvailableModels: vi.fn(async () => []),
     } as any;
 
     // Setup mock user state
@@ -194,6 +195,20 @@ describe('Bot Callbacks', () => {
       
       expect(ctx.answerCallbackQuery).toHaveBeenCalledWith('bot.invalidModel');
       expect(mockSessionManager.recreateActiveSession).not.toHaveBeenCalled();
+    });
+
+    it('should accept model from dynamic catalog', async () => {
+      vi.mocked(mockSessionManager.listAvailableModels).mockResolvedValue(['gpt-5.3-codex']);
+
+      const ctx = await executeCallback('model:gpt-5.3-codex');
+
+      expect(mockUserState.setCurrentModel).toHaveBeenCalledWith('123456', 'gpt-5.3-codex');
+      expect(mockSessionManager.recreateActiveSession).toHaveBeenCalledWith('123456', {
+        model: 'gpt-5.3-codex',
+        tools: mockTools.all,
+        mcpServers: [],
+      });
+      expect(ctx.answerCallbackQuery).toHaveBeenCalledWith('bot.modelChanged');
     });
 
     it('should reject when session is busy', async () => {

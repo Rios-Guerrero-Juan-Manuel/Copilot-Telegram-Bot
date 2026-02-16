@@ -1,6 +1,6 @@
 import { AppConfig, config as defaultConfig } from '../config';
 import { DatabaseManager } from './database';
-import { MODEL_ID_VALUES, ProjectInfo } from '../types';
+import { ProjectInfo } from '../types';
 import Database from 'better-sqlite3';
 
 interface UserRow {
@@ -110,10 +110,8 @@ export class UserState {
     const row = this.db
       .prepare('SELECT current_model FROM users WHERE id = ?')
       .get(userId) as { current_model: string | null } | undefined;
-    const model = row?.current_model ?? this.config.COPILOT_DEFAULT_MODEL;
-    return MODEL_ID_VALUES.includes(model as (typeof MODEL_ID_VALUES)[number])
-      ? model
-      : this.config.COPILOT_DEFAULT_MODEL;
+    const model = row?.current_model?.trim();
+    return model && model.length > 0 ? model : this.config.COPILOT_DEFAULT_MODEL;
   }
 
   /**
@@ -123,9 +121,7 @@ export class UserState {
    * @param model - Model ID
    */
   setCurrentModel(userId: number, model: string): void {
-    const nextModel = MODEL_ID_VALUES.includes(model as (typeof MODEL_ID_VALUES)[number])
-      ? model
-      : this.config.COPILOT_DEFAULT_MODEL;
+    const nextModel = model.trim() || this.config.COPILOT_DEFAULT_MODEL;
     this.db
       .prepare('UPDATE users SET current_model = ? WHERE id = ?')
       .run(nextModel, userId);
