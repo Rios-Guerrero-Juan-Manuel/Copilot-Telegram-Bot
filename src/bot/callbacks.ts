@@ -3,7 +3,7 @@ import { promises as fs } from 'fs';
 import { SessionManager } from '../copilot/session-manager';
 import { UserState } from '../state/user-state';
 import { McpRegistry } from '../mcp/mcp-registry';
-import { MODEL_IDS, ToolBundle } from '../types';
+import { ToolBundle } from '../types';
 import { isPathAllowed } from '../config';
 import { logger } from '../utils/logger';
 import { isCallbackValid, extractCallbackParts } from './keyboard-utils';
@@ -11,6 +11,7 @@ import { escapeHtml } from '../utils/formatter';
 import { CdWizard } from './wizard-cd';
 import { AddProjectWizard } from './wizard-addproject';
 import { i18n } from '../i18n/index.js';
+import { getAvailableModelIds } from './model-catalog';
 import {
   addAllowedPathAndRestart,
   consumeAllowPathRequest,
@@ -109,7 +110,8 @@ export function registerCallbacks(
       ? extractCallbackParts(callbackData).data
       : (ctx.match?.[1] ?? '');
     
-    if (!MODEL_IDS.includes(model as (typeof MODEL_IDS)[number])) {
+    const availableModels = await getAvailableModelIds(sessionManager);
+    if (!availableModels.includes(model)) {
       await ctx.answerCallbackQuery(i18n.t(user.id, 'bot.invalidModel'));
       return;
     }
